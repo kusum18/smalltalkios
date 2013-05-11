@@ -31,6 +31,10 @@
 		2B6223BB173B817200E45770 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B6223BA173B817200E45770 /* CoreLocation.framework */; };
 		2B6223BF173B84B400E45770 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6223BD173B84B400E45770 /* LoginViewController.m */; };
 		2B6223C0173B84B400E45770 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B6223BE173B84B400E45770 /* LoginViewController.xib */; };
+		41371F97173DA1EF00C90900 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 41371F96173DA1EF00C90900 /* Location.m */; };
+		41371F9A173DC4E600C90900 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 41371F99173DC4E600C90900 /* Constants.m */; };
+		41371FA0173DC59900C90900 /* MyFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41371F9E173DC59900C90900 /* MyFeedViewController.m */; };
+		41371FA1173DC59900C90900 /* MyFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41371F9F173DC59900C90900 /* MyFeedViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +70,13 @@
 		2B6223BC173B84B400E45770 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Login/LoginViewController.h; sourceTree = "<group>"; };
 		2B6223BD173B84B400E45770 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = Login/LoginViewController.m; sourceTree = "<group>"; };
 		2B6223BE173B84B400E45770 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Login/LoginViewController.xib; sourceTree = "<group>"; };
+		41371F95173DA1EF00C90900 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Location.h; path = Facebook/Location.h; sourceTree = "<group>"; };
+		41371F96173DA1EF00C90900 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Location.m; path = Facebook/Location.m; sourceTree = "<group>"; };
+		41371F98173DC4E600C90900 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Helper/Constants.h; sourceTree = "<group>"; };
+		41371F99173DC4E600C90900 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Helper/Constants.m; sourceTree = "<group>"; };
+		41371F9D173DC59900C90900 /* MyFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFeedViewController.h; sourceTree = "<group>"; };
+		41371F9E173DC59900C90900 /* MyFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFeedViewController.m; sourceTree = "<group>"; };
+		41371F9F173DC59900C90900 /* MyFeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFeedViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,12 +84,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B6223BB173B817200E45770 /* CoreLocation.framework in Frameworks */,
 				2B47FFD9173BA58F00A243BE /* AdSupport.framework in Frameworks */,
 				2B47FFCB173B929100A243BE /* Social.framework in Frameworks */,
 				2B47FFC9173B928C00A243BE /* Security.framework in Frameworks */,
 				2B47FFC7173B928300A243BE /* libsqlite3.dylib in Frameworks */,
 				2B47FFC5173B927800A243BE /* Accounts.framework in Frameworks */,
-				2B6223BB173B817200E45770 /* CoreLocation.framework in Frameworks */,
 				2B622398173B80FF00E45770 /* UIKit.framework in Frameworks */,
 				2B62239A173B80FF00E45770 /* Foundation.framework in Frameworks */,
 				2B62239C173B80FF00E45770 /* CoreGraphics.framework in Frameworks */,
@@ -89,13 +100,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2B47FFCC173BA00000A243BE /* Facebook */ = {
+		2B47FFCC173BA00000A243BE /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				41371F9B173DC55600C90900 /* QA */,
 				2B47FFCF173BA07500A243BE /* FBHelper.h */,
 				2B47FFD0173BA07500A243BE /* FBHelper.m */,
+				41371F95173DA1EF00C90900 /* Location.h */,
+				41371F96173DA1EF00C90900 /* Location.m */,
+				41371F98173DC4E600C90900 /* Constants.h */,
+				41371F99173DC4E600C90900 /* Constants.m */,
 			);
-			name = Facebook;
+			name = Helper;
 			sourceTree = "<group>";
 		};
 		2B47FFCD173BA01000A243BE /* AppDelegate */ = {
@@ -134,7 +150,6 @@
 		2B62238B173B80FF00E45770 = {
 			isa = PBXGroup;
 			children = (
-				2B47FFD8173BA58F00A243BE /* AdSupport.framework */,
 				2B62239D173B80FF00E45770 /* smalltalk */,
 				2B622396173B80FF00E45770 /* Frameworks */,
 				2B622395173B80FF00E45770 /* Products */,
@@ -152,6 +167,7 @@
 		2B622396173B80FF00E45770 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2B47FFD8173BA58F00A243BE /* AdSupport.framework */,
 				2B47FFCA173B929100A243BE /* Social.framework */,
 				2B47FFC8173B928C00A243BE /* Security.framework */,
 				2B47FFC6173B928300A243BE /* libsqlite3.dylib */,
@@ -169,9 +185,10 @@
 		2B62239D173B80FF00E45770 /* smalltalk */ = {
 			isa = PBXGroup;
 			children = (
+				41371F9C173DC57F00C90900 /* MyFeed */,
 				2B47FFD7173BA28F00A243BE /* Home */,
 				2B47FFCD173BA01000A243BE /* AppDelegate */,
-				2B47FFCC173BA00000A243BE /* Facebook */,
+				2B47FFCC173BA00000A243BE /* Helper */,
 				2B62239E173B80FF00E45770 /* Supporting Files */,
 				2B47FFCE173BA02E00A243BE /* Login */,
 			);
@@ -190,6 +207,23 @@
 				2B6223AD173B80FF00E45770 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		41371F9B173DC55600C90900 /* QA */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = QA;
+			sourceTree = "<group>";
+		};
+		41371F9C173DC57F00C90900 /* MyFeed */ = {
+			isa = PBXGroup;
+			children = (
+				41371F9D173DC59900C90900 /* MyFeedViewController.h */,
+				41371F9E173DC59900C90900 /* MyFeedViewController.m */,
+				41371F9F173DC59900C90900 /* MyFeedViewController.xib */,
+			);
+			path = MyFeed;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +285,7 @@
 				2B6223C0173B84B400E45770 /* LoginViewController.xib in Resources */,
 				2B47FFC1173B91AB00A243BE /* FacebookSDKResources.bundle in Resources */,
 				2B47FFD6173BA28600A243BE /* HomeViewController.xib in Resources */,
+				41371FA1173DC59900C90900 /* MyFeedViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +302,9 @@
 				2B6223BF173B84B400E45770 /* LoginViewController.m in Sources */,
 				2B47FFD1173BA07500A243BE /* FBHelper.m in Sources */,
 				2B47FFD5173BA28600A243BE /* HomeViewController.m in Sources */,
+				41371F97173DA1EF00C90900 /* Location.m in Sources */,
+				41371F9A173DC4E600C90900 /* Constants.m in Sources */,
+				41371FA0173DC59900C90900 /* MyFeedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,6 +389,8 @@
 		2B6223B8173B80FF00E45770 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ankur Kothari (99DZ37BYTG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ankur Kothari (99DZ37BYTG)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -359,6 +399,8 @@
 				GCC_PREFIX_HEADER = "smalltalk/smalltalk-Prefix.pch";
 				INFOPLIST_FILE = "smalltalk/smalltalk-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "C3FD8CB9-9046-4956-9738-4DD7FF10AF8C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C3FD8CB9-9046-4956-9738-4DD7FF10AF8C";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -367,6 +409,8 @@
 		2B6223B9173B80FF00E45770 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Ankur Kothari (99DZ37BYTG)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ankur Kothari (99DZ37BYTG)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -375,6 +419,8 @@
 				GCC_PREFIX_HEADER = "smalltalk/smalltalk-Prefix.pch";
 				INFOPLIST_FILE = "smalltalk/smalltalk-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "C3FD8CB9-9046-4956-9738-4DD7FF10AF8C";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C3FD8CB9-9046-4956-9738-4DD7FF10AF8C";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

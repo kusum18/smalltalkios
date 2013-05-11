@@ -11,4 +11,6 @@
 @interface HomeViewController : ViewController
 - (IBAction)performLogout:(id)sender;
 
+- (IBAction)performLocationAction:(id)sender;
+- (IBAction)showMyFeeds:(id)sender;
 @end

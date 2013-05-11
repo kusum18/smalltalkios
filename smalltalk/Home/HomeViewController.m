@@ -8,6 +8,9 @@
 
 #import "HomeViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "Location.h"
+#import "MyFeedViewController.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface HomeViewController ()
 
@@ -39,6 +42,18 @@
 
 - (IBAction)performLogout:(id)sender {
     [FBSession.activeSession closeAndClearTokenInformation];
+}
+
+- (IBAction)performLocationAction:(id)sender {
+    CLLocationCoordinate2D coordinate = [Location getCurrentLocation];
+    NSLog(@"latitude %+.6f, longitude %+.6f\n",
+          coordinate.latitude,
+          coordinate.longitude);
+}
+
+- (IBAction)showMyFeeds:(id)sender {
+    MyFeedViewController *controller = [[MyFeedViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 

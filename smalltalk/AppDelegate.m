@@ -36,8 +36,10 @@
             [self.navController topViewController];
             if ([[topViewController modalViewController]
                  isKindOfClass:[LoginViewController class]]) {
-                [topViewController dismissModalViewControllerAnimated:YES];
+//                [topViewController dismissModalViewControllerAnimated:YES];
+                
             }
+                            [self.navController popViewControllerAnimated:YES];
         }
             break;
         case FBSessionStateClosed:
