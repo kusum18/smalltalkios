@@ -8,9 +8,11 @@
 
 #import "ViewController.h"
 
-@interface HomeViewController : ViewController
+@interface HomeViewController : ViewController<UITabBarDelegate>
+
 - (IBAction)performLogout:(id)sender;
 
 - (IBAction)performLocationAction:(id)sender;
 - (IBAction)showMyFeeds:(id)sender;
+
 @end

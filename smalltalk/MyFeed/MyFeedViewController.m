@@ -19,6 +19,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.tabBarItem.image = [UIImage imageNamed:@"message.png"];
+        self.tabBarItem.title=@"Browse Q's";
     }
     return self;
 }

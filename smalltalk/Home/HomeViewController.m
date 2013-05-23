@@ -10,7 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "Location.h"
 #import "MyFeedViewController.h"
-#import <CoreLocation/CoreLocation.h>
+#import <CoreLocation/CoreLocation.h> 
 
 @interface HomeViewController ()
 
@@ -23,6 +23,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title=@"Hi";
+        self.tabBarItem.title = @"hello";
+        self.tabBarItem.badgeValue = @"12";
     }
     return self;
 }
