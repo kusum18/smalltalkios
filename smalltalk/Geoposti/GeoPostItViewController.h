@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
-@interface GeoPostItViewController : ViewController
+@interface GeoPostItViewController : ViewController<UITableViewDataSource,UITableViewDelegate>
+@property (strong, nonatomic) IBOutlet UITableView *notesTable;
 
+- (IBAction)write:(id)sender;
 @end

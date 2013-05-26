@@ -20,7 +20,8 @@
 
 @protocol HttpManagerDelegate<NSObject>
 
-- (void) connectionDidFail:(HttpManager *)theConnection withError:(NSError *)error;
+//- (void) n:(HttpManager *)theConnection;
 - (void) connectionDidFinish:(HttpManager *)theConnection;
+-(void) connectionDidFail:(HttpManager *)theConnection;
 
 @end

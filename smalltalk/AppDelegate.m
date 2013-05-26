@@ -20,18 +20,54 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch
-    [Parse setApplicationId:@"Ai4JS8bvQ0HddJeOBOiCT3JrxLMtQTYynM0nBtkf"
-                  clientKey:@"s381ldP6DHTJnlsKqLkUb0HBV74k9Q1wX6hYV6Ee"];
     [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
      UIRemoteNotificationTypeAlert|
      UIRemoteNotificationTypeSound];
+//    [FBSession.activeSession closeAndClearTokenInformation];
     
-    TBViewController *homeController = [[TBViewController alloc] init];
-    navController= [[UINavigationController alloc] initWithRootViewController:homeController];
+//    TBViewController *homeController = [[TBViewController alloc] init];
+    navController= [[UINavigationController alloc] initWithRootViewController:nil];
     [navController setNavigationBarHidden:YES];
     self.window.rootViewController = navController;
     [self checkForFacebook];
     return YES;
+}
+
+- (void)publishStory
+{
+    NSDictionary *postParams =
+    [[NSMutableDictionary alloc] initWithObjectsAndKeys:
+     @"https://developers.facebook.com/ios", @"link",
+     @"Facebook SDK for iOS", @"name",
+     @"Build great social apps and get more installs.", @"caption",
+     @"The Facebook SDK for iOS makes it easier and faster to develop Facebook integrated iOS apps.", @"description",
+     nil];
+    [FBSettings setLoggingBehavior:[NSSet setWithObjects:FBLoggingBehaviorFBRequests, FBLoggingBehaviorFBURLConnections, nil]];
+    [FBRequestConnection
+     startWithGraphPath:@"me/feed"
+     parameters:postParams
+     HTTPMethod:@"POST"
+     completionHandler:^(FBRequestConnection *connection,
+                         id result,
+                         NSError *error) {
+         NSString *alertText;
+         if (error) {
+             alertText = [NSString stringWithFormat:
+                          @"error: domain = %@, code = %d",
+                          error.domain, error.code];
+         } else {
+             alertText = [NSString stringWithFormat:
+                          @"Posted action, id: %@",
+                          [result objectForKey:@"id"]];
+         }
+         // Show the result in an alert
+         [[[UIAlertView alloc] initWithTitle:@"Result"
+                                     message:alertText
+                                    delegate:self
+                           cancelButtonTitle:@"OK!"
+                           otherButtonTitles:nil]
+          show];
+     }];
 }
 
 - (void)sessionStateChanged:(FBSession *)session
@@ -47,7 +83,9 @@
 //                [topViewController dismissModalViewControllerAnimated:YES];
                 
             }
-                            [self.navController popViewControllerAnimated:YES];
+            [self.navController popViewControllerAnimated:YES];
+            NSLog(@"%@",[[[FBSession activeSession] accessTokenData] accessToken]);
+            [self publishStory];
         }
             break;
         case FBSessionStateClosed:

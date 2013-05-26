@@ -14,7 +14,7 @@
  the load. */
 - (id)initWithURL:(NSURL *)theURL delegate:(id<HttpManagerDelegate>)theDelegate
 {
-//	NSLog(@"HttpManager:initWithURL");
+	NSLog(@"HttpManager:initWithURL");
 	
 	if (self = [super init]) 
 	{
@@ -34,7 +34,7 @@
 		 data. The connection object is owned both by the creator and the
 		 loading system. */
 		
-//		NSLog(@"Request Count before %d",[theRequest retainCount]);
+		NSLog(@"Request Count before %d",[theRequest retainCount]);
 		self.urlConnection = [[NSURLConnection alloc] initWithRequest:theRequest 
 																	   delegate:self 
 															   startImmediately:YES];
@@ -42,7 +42,7 @@
 		if (urlConnection == nil) 
 		{
 			/* inform the user that the connection failed */
-			[self.delegate connectionDidFail:self withError:nil];
+			[self.delegate connectionDidFail:self];
 		}
 	}
 	
@@ -51,8 +51,8 @@
 
 - (void)dealloc
 {	
-//	NSLog(@" HttpManager Dealloc");
-//	NSLog(@" count = %d",[urlConnection retainCount]);
+	NSLog(@" HttpManager Dealloc");
+	NSLog(@" count = %d",[urlConnection retainCount]);
 	[urlConnection release];
 	delegate = nil;
 	[receivedData release];
@@ -64,7 +64,7 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-//	NSLog(@"HttpManager:connection didReceiveResponse");
+	NSLog(@"HttpManager:connection didReceiveResponse");
     /* This method is called when the server has determined that it has
 	 enough information to create the NSURLResponse. It can be called
 	 multiple times, for example in the case of a redirect, so each time
@@ -75,14 +75,14 @@
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-//	NSLog(@"HttpManager:connection connection didReceiveData");
+	NSLog(@"HttpManager:connection connection didReceiveData");
     /* Append the new data to the received data. */
     [self.receivedData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
-//	NSLog(@"HttpManager:connection didReceiveAuthenticationChallenge");
+	NSLog(@"HttpManager:connection didReceiveAuthenticationChallenge");
 	NSURLCredential *newCredential;
 	newCredential=[NSURLCredential credentialWithUser: @""
 											 password: @""
@@ -93,13 +93,13 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-//	NSLog(@"HttpManager:connection didFailWithError");
+	NSLog(@"HttpManager:connection didFailWithError");
 	// Show appropriate error message
-//	NSLog(@"Error Code %d", [error code]);
-	[self.delegate connectionDidFail:self withError:error];
+	NSLog(@"Error Code %d", [error code]);
+	[self.delegate connectionDidFail:self];
 	
 	// inform the user
-//   NSLog(@"Connection failed! Error - %@",[error localizedDescription]);
+   NSLog(@"Connection failed! Error - %@",[error localizedDescription]);
 	
 	//clear the cache memory 
 	NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0 diskCapacity:0 diskPath:nil];
@@ -111,7 +111,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-//	NSLog(@"HttpManager:connectionDidFinishLoading");
+	NSLog(@"HttpManager:connectionDidFinishLoading");
 	//clear the cache memory 
 	NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0 diskCapacity:0 diskPath:nil];
 	[NSURLCache setSharedURLCache:sharedCache];

@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface QuestionCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UILabel *postme;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end

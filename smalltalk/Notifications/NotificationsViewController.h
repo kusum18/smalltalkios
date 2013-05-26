@@ -9,5 +9,6 @@
 #import "ViewController.h"
 
 @interface NotificationsViewController : ViewController
+- (IBAction)moveAround:(id)sender;
 
 @end

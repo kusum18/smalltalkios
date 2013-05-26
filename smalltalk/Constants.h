@@ -8,10 +8,10 @@
 
 
 /* URL Zone */
-#define CBaseURL @"http://137.132.179.37/openx/www/delivery/"
-#define CUrlZone1     @"http://137.132.179.37/openx/www/delivery/ajs.php?zoneid=1&amp;cb=%d&amp;charset=UTF-8"
-#define CUrlZone2     @"http://137.132.179.37/openx/www/delivery/ajs.php?zoneid=2&amp;cb=%d&amp;charset=UTF-8"
-#define CUrlZone3     @"http://www.google.com"
+#define CBaseURL @"http://localhost/smalltalk"
+#define NotesSendReqUrl @"http://127.0.0.1:8080/smalltalk/index.php/post/user/"
+#define AnswersURl @"http://127.0.0.1:8080/ss.txt"
+#define TestURL @"http://www.google.com"
 
 /* String constants */
 #define jsHTML @"<html><head><style>body{ margin: 0; padding: 0; }</style></head><body><script>%@</script></body></html>"

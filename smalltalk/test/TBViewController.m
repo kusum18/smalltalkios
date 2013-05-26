@@ -27,6 +27,7 @@
         [self loadAllViews];
         [self setSelectedIndex:0];
         [self setHidesBottomBarWhenPushed:YES];
+        self.tabBar.tintColor = [UIColor blackColor];
         
     }
     return self;

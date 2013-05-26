@@ -7,6 +7,7 @@
 //
 
 #import "NotificationsViewController.h"
+#import "HomeViewController.h"
 
 @interface NotificationsViewController ()
 
@@ -19,7 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.tabBarItem.image = [UIImage imageNamed:@"lightbulb-off.png"];
+        self.tabBarItem.image = [UIImage imageNamed:@"speaker-electric.png"];
         self.tabBarItem.title=@"Notification";
     }
     return self;
@@ -37,4 +38,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)moveAround:(id)sender {
+    HomeViewController *controller = [[HomeViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+}
 @end
