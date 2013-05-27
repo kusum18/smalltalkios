@@ -105,7 +105,6 @@
 
 #pragma mark http manager delegate
 - (void) connectionDidFinish:(HttpManager *)theConnection{
-    NSString *jsontext = [[NSString alloc] initWithData:theConnection.receivedData encoding:NSUTF8StringEncoding];
     NSError *error;
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:theConnection.receivedData options:kNilOptions error:&error];
     NSArray *objs = [dict objectForKey:@"questions"];

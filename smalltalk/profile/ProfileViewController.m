@@ -7,6 +7,7 @@
 //
 
 #import "ProfileViewController.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface ProfileViewController ()
 
@@ -37,4 +38,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)unlinkFacebook:(id)sender {
+    [FBSession.activeSession closeAndClearTokenInformation];
+}
 @end

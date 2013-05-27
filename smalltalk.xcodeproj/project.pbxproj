@@ -89,6 +89,8 @@
 		41C48B1E1751A4B3004BC6CA /* HttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C48B1D1751A4B3004BC6CA /* HttpManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		41C48B241751EA2F004BC6CA /* QACell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C48B231751EA2F004BC6CA /* QACell.m */; };
 		41C48B281751EAA9004BC6CA /* QACell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41C48B271751EAA9004BC6CA /* QACell.xib */; };
+		41C48B2B17535268004BC6CA /* PostsFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C48B2A17535268004BC6CA /* PostsFeedParser.m */; };
+		41C48B2E1753535B004BC6CA /* PostsFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C48B2D1753535B004BC6CA /* PostsFeed.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -200,6 +202,10 @@
 		41C48B221751EA2F004BC6CA /* QACell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QACell.h; sourceTree = "<group>"; };
 		41C48B231751EA2F004BC6CA /* QACell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QACell.m; sourceTree = "<group>"; };
 		41C48B271751EAA9004BC6CA /* QACell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QACell.xib; sourceTree = "<group>"; };
+		41C48B2917535268004BC6CA /* PostsFeedParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsFeedParser.h; sourceTree = "<group>"; };
+		41C48B2A17535268004BC6CA /* PostsFeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsFeedParser.m; sourceTree = "<group>"; };
+		41C48B2C1753535A004BC6CA /* PostsFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsFeed.h; sourceTree = "<group>"; };
+		41C48B2D1753535B004BC6CA /* PostsFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsFeed.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -283,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				2B62239D173B80FF00E45770 /* smalltalk */,
+				2B62239E173B80FF00E45770 /* Supporting Files */,
 				2B622396173B80FF00E45770 /* Frameworks */,
 				2B622395173B80FF00E45770 /* Products */,
 			);
@@ -326,14 +333,13 @@
 			isa = PBXGroup;
 			children = (
 				41A7E3FF174E19FA00F4E796 /* profile */,
-				41A7E3F9174E19CD00F4E796 /* Geoposti */,
+				41A7E3F9174E19CD00F4E796 /* Geopostit */,
 				41A7E3E9174E192900F4E796 /* Notifications */,
 				41A7E3CF174DBF9C00F4E796 /* test */,
 				41371F9C173DC57F00C90900 /* Browse */,
 				2B47FFD7173BA28F00A243BE /* Home */,
 				2B47FFCD173BA01000A243BE /* AppDelegate */,
 				2B47FFCC173BA00000A243BE /* Helper */,
-				2B62239E173B80FF00E45770 /* Supporting Files */,
 				2B47FFCE173BA02E00A243BE /* Login */,
 			);
 			path = smalltalk;
@@ -353,6 +359,7 @@
 				2B6223AD173B80FF00E45770 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			path = smalltalk;
 			sourceTree = "<group>";
 		};
 		410EF774174F326A008BDC74 /* misc */ = {
@@ -435,7 +442,7 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
-		41A7E3F9174E19CD00F4E796 /* Geoposti */ = {
+		41A7E3F9174E19CD00F4E796 /* Geopostit */ = {
 			isa = PBXGroup;
 			children = (
 				41A7E3FA174E19CD00F4E796 /* GeoPostItViewController.h */,
@@ -445,6 +452,7 @@
 				41C48A95174FED16004BC6CA /* PostItViewController.m */,
 				41C48A96174FED16004BC6CA /* PostItViewController.xib */,
 			);
+			name = Geopostit;
 			path = Geoposti;
 			sourceTree = "<group>";
 		};
@@ -465,6 +473,8 @@
 				41C48AAC1750FEF2004BC6CA /* FriendTag.m */,
 				41C48AB4175133E6004BC6CA /* QA.h */,
 				41C48AB5175133E6004BC6CA /* QA.m */,
+				41C48B2C1753535A004BC6CA /* PostsFeed.h */,
+				41C48B2D1753535B004BC6CA /* PostsFeed.m */,
 			);
 			name = "data-structure";
 			sourceTree = "<group>";
@@ -474,6 +484,8 @@
 			children = (
 				41C48AB8175185C5004BC6CA /* AnswersParser.h */,
 				41C48AB9175185C5004BC6CA /* AnswersParser.m */,
+				41C48B2917535268004BC6CA /* PostsFeedParser.h */,
+				41C48B2A17535268004BC6CA /* PostsFeedParser.m */,
 			);
 			name = Parsers;
 			sourceTree = "<group>";
@@ -642,6 +654,8 @@
 				41C48ABA175185C5004BC6CA /* AnswersParser.m in Sources */,
 				41C48B1E1751A4B3004BC6CA /* HttpManager.m in Sources */,
 				41C48B241751EA2F004BC6CA /* QACell.m in Sources */,
+				41C48B2B17535268004BC6CA /* PostsFeedParser.m in Sources */,
+				41C48B2E1753535B004BC6CA /* PostsFeed.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

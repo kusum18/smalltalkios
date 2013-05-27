@@ -16,6 +16,7 @@
 @property (retain) NSURLConnection *urlConnection;
 
 - (id) initWithURL:(NSURL *) theURL delegate:(id<HttpManagerDelegate>) theDelegate;
+- (id)initWithPOSTURL:(NSURL *)theURL delegate:(id<HttpManagerDelegate>)theDelegate forPostData:(NSString *)post;
 @end
 
 @protocol HttpManagerDelegate<NSObject>

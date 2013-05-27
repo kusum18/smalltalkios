@@ -24,7 +24,6 @@
 -(void) getAllAnswersForQuestion:(NSInteger)qid{
 //    HttpManager *handler = [[HttpManager alloc] init];
     [[HttpManager alloc] initWithURL:[NSURL URLWithString:AnswersURl] delegate:self];
-    
 }
 
 

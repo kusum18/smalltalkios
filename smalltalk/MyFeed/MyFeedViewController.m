@@ -15,6 +15,8 @@
 
 @interface MyFeedViewController ()
 
+-(void) fetchAllPosts;
+
 @end
 
 @implementation MyFeedViewController
@@ -37,6 +39,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self fetchAllPosts];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -96,4 +99,19 @@
     NewPostViewController *qa = [[NewPostViewController alloc] init];
     [self.navigationController pushViewController:qa animated:YES];
 }
+
+# pragma mark server api
+
+-(void) fetchAllPosts{
+    
+}
+
+- (void) connectionDidFinish:(HttpManager *)theConnection{
+    
+}
+
+-(void) connectionDidFail:(HttpManager *)theConnection{
+    
+}
+
 @end

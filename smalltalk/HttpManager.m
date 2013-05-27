@@ -49,6 +49,58 @@
 	return self;
 }
 
+
+/* This method initiates the load request. The connection is asynchronous,
+ and we implement a set of delegate methods that act as callbacks during
+ the load. */
+- (id)initWithPOSTURL:(NSURL *)theURL delegate:(id<HttpManagerDelegate>)theDelegate forPostData:(NSString *)post
+{
+	NSLog(@"HttpManager:initWithURL");
+	
+	if (self = [super init])
+	{
+		
+		self.delegate = theDelegate;
+		
+		
+		NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:theURL
+																  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
+															  timeoutInterval:180];
+		
+		/* create the NSMutableData instance that will hold the received data */
+		
+		receivedData = [[NSMutableData alloc]init];
+		
+		/* Create the connection with the request and start loading the
+		 data. The connection object is owned both by the creator and the
+		 loading system. */
+        
+        NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+        
+        NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+        
+        [theRequest setHTTPMethod:@"POST"];
+        [theRequest setValue:postLength forHTTPHeaderField:@"Content-Length"];
+        [theRequest setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        [theRequest setHTTPBody:postData];
+        
+		
+		NSLog(@"Request Count before %d",[theRequest retainCount]);
+		self.urlConnection = [[NSURLConnection alloc] initWithRequest:theRequest
+                                                             delegate:self
+                                                     startImmediately:YES];
+		
+        
+		if (urlConnection == nil)
+		{
+			/* inform the user that the connection failed */
+			[self.delegate connectionDidFail:self];
+		}
+	}
+	
+	return self;
+}
+
 - (void)dealloc
 {	
 	NSLog(@" HttpManager Dealloc");

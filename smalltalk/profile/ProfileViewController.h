@@ -10,4 +10,6 @@
 
 @interface ProfileViewController : ViewController
 
+
+- (IBAction)unlinkFacebook:(id)sender;
 @end

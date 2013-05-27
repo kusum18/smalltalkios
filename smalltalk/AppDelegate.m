@@ -24,9 +24,8 @@
      UIRemoteNotificationTypeAlert|
      UIRemoteNotificationTypeSound];
 //    [FBSession.activeSession closeAndClearTokenInformation];
-    
-//    TBViewController *homeController = [[TBViewController alloc] init];
-    navController= [[UINavigationController alloc] initWithRootViewController:nil];
+    TBViewController *homeController = [[TBViewController alloc] init];
+    navController= [[UINavigationController alloc] initWithRootViewController:homeController];
     [navController setNavigationBarHidden:YES];
     self.window.rootViewController = navController;
     [self checkForFacebook];
@@ -84,8 +83,8 @@
                 
             }
             [self.navController popViewControllerAnimated:YES];
-            NSLog(@"%@",[[[FBSession activeSession] accessTokenData] accessToken]);
-            [self publishStory];
+//            NSLog(@"%@",[[[FBSession activeSession] accessTokenData] accessToken]);
+//            [self publishStory];
         }
             break;
         case FBSessionStateClosed:
