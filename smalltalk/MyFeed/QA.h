@@ -12,15 +12,17 @@
 {
     NSString *_postText;
     NSString *_userinfo;
-    NSInteger _userid;
-    NSInteger _postid;
-    NSInteger _count;
+    NSString *_userid;
+    NSString *_postid;
+    NSString *_count;
+    NSString *_postTitle;
 }
 
 @property (nonatomic,retain) NSString *postText;
 @property (nonatomic,retain) NSString *userinfo;
-@property (nonatomic,readwrite) NSInteger userid;
-@property (nonatomic,readwrite) NSInteger postid;
-@property (nonatomic,readwrite) NSInteger count;
+@property (nonatomic,retain) NSString *userid;
+@property (nonatomic,retain) NSString *postid;
+@property (nonatomic,retain) NSString *count;
+@property (nonatomic,retain) NSString *postTitle;
 
 @end

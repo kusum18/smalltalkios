@@ -7,8 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "HttpManager.h"
 
-@interface NotificationsViewController : ViewController
-- (IBAction)moveAround:(id)sender;
+@interface NotificationsViewController : ViewController<HttpManagerDelegate>
 
+@property (strong, nonatomic) IBOutlet UITableView *notificationsTable;
 @end

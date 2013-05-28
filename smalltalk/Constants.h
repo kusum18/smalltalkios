@@ -9,25 +9,24 @@
 
 /* URL Zone */
 #define CBaseURL @"http://localhost/smalltalk"
-#define NotesSendReqUrl @"http://127.0.0.1:8080/smalltalk/index.php/post/user/"
 #define AnswersURl @"http://127.0.0.1:8080/ss.txt"
 #define TestURL @"http://www.google.com"
 
-/* String constants */
-#define jsHTML @"<html><head><style>body{ margin: 0; padding: 0; }</style></head><body><script>%@</script></body></html>"
-#define AdHTML @""
+
+// Screen 1
+#define newAnswerURL @"http://smalltalk.zzl.org/index.php/newanswer/answer/"
+#define feedsURL @""
+#define friendsListURL @""
+#define newQuestionURL @""
+
+#define C_UserId @"user_id"
+
+// Screen 2
+#define notificationsURL @""
 
 
-/* Request Tags */
-#define JShttpTag 1
-#define HTMLhttpTag 2
+// Screen 3
+#define fetchAllNotesURL @""
+#define NotesSendReqUrl @"http://127.0.0.1:8080/smalltalk/index.php/post/user/"
 
-/* Ad types */
-#define AdTypeNone 0
-#define AdTypeBanner 1
-#define AdTypePopup 2
-#define AdTypeInterstitial 3
-
-/*Timer Constants .All times in seconds*/
-#define AdRefreshNone 0
-#define AdRefreshTimeDefault 30
+// Screen 4

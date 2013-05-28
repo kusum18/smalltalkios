@@ -47,12 +47,12 @@
     [FBSession.activeSession closeAndClearTokenInformation];
 }
 
-- (IBAction)performLocationAction:(id)sender {
-    CLLocationCoordinate2D coordinate = [Location getCurrentLocation];
-    NSLog(@"latitude %+.6f, longitude %+.6f\n",
-          coordinate.latitude,
-          coordinate.longitude);
-}
+//- (IBAction)performLocationAction:(id)sender {
+//    CLLocationCoordinate2D coordinate = [self getCurrentLocation];
+//    NSLog(@"latitude %+.6f, longitude %+.6f\n",
+//          coordinate.latitude,
+//          coordinate.longitude);
+//}
 
 - (IBAction)showMyFeeds:(id)sender {
     MyFeedViewController *controller = [[MyFeedViewController alloc] init];

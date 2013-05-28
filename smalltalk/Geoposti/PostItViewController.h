@@ -13,4 +13,6 @@
 - (IBAction)clearNotes:(id)sender;
 - (IBAction)SendNotes:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UITextField *place;
+@property (strong, nonatomic) IBOutlet UITextView *postText;
 @end

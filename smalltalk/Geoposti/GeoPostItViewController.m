@@ -8,8 +8,23 @@
 
 #import "GeoPostItViewController.h"
 #import "PostItViewController.h"
+#import "Location.h"
+#import "Constants.h"
+#import <CoreLocation/CoreLocation.h>
+#import "GeoPost.h"
 
 @interface GeoPostItViewController ()
+{
+    CLLocationCoordinate2D _location;
+    NSMutableArray *_geoposts;
+
+}
+
+-(void) locateLatitudeLongitude;
+
+-(void) fetchAllNotes;
+
+- (CLLocationCoordinate2D ) getCurrentLocation;
 
 @end
 
@@ -31,6 +46,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self locateLatitudeLongitude];
+    [self fetchAllNotes];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -69,7 +86,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    [cell.textLabel setText:@"this is test this is test inthis is test ininthis is test inthis is test inthis is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ... djhkhkhkjhkhkh khkh khkh khkh"];
+    [cell.textLabel setText:[_geoposts objectAtIndex:indexPath.row]];
     cell.textLabel.numberOfLines = 0;
     [cell.textLabel sizeToFit];
     [cell.textLabel setFont:[UIFont systemFontOfSize:17]];
@@ -81,7 +98,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *str = [NSString stringWithFormat:@"this is test this is test inthis is test ininthis is test inthis is test inthis is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...this is test in uilabel ...djhkhkhkjhkhkh khkh khkh khkh "];
+    NSString *str = [_geoposts objectAtIndex:indexPath.row];
     CGSize textSize = [str                       sizeWithFont:[UIFont boldSystemFontOfSize:18]
                        constrainedToSize:CGSizeMake(300, 2000)
                        lineBreakMode:UILineBreakModeWordWrap];
@@ -107,4 +124,68 @@
     NSLog(@"log me");
     [self.navigationController pushViewController:[[PostItViewController alloc] init] animated:YES];
 }
+
+
+#pragma mark http manager delegate
+
+
+- (void) connectionDidFinish:(HttpManager *)theConnection{
+    NSError *error;
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:theConnection.receivedData options:kNilOptions error:&error];
+    NSArray *objs = [dict objectForKey:@"posts"];
+    [_geoposts removeAllObjects];
+    for (NSDictionary *posts in objs) {
+        GeoPost *post = [[GeoPost alloc] init];
+        post.likes = [posts objectForKey:@"count"];
+        post.latitude = [posts objectForKey:@"latitude"];
+        post.longitude = [posts objectForKey:@"longitude"];
+        post.place = [posts objectForKey:@"place"];
+        post.postId = [posts objectForKey:@"post_id"];
+        post.postText = [posts objectForKey:@"posttext"];
+        [_geoposts addObject:post];
+    }
+    [self.notesTable reloadData];
+
+}
+
+-(void) connectionDidFail:(HttpManager *)theConnection{
+
+    
+}
+
+
+#pragma mark data loads
+
+-(void) fetchAllNotes{
+    NSString *url = [NSString stringWithFormat:@"%@",fetchAllNotesURL];
+    [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
+    
+}
+
+-(void) locateLatitudeLongitude{
+    _location = [self getCurrentLocation];
+}
+
+- (CLLocationCoordinate2D ) getCurrentLocation{
+    CLLocationManager *locationManager;
+    
+    if (!locationManager) {
+        //        [self initializeLocationManager];
+        locationManager = [[CLLocationManager alloc] init];
+        locationManager.delegate = self;
+        locationManager.distanceFilter = kCLDistanceFilterNone;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        [locationManager startUpdatingLocation];
+        
+    }else{
+        //        [locationManager startUpdatingLocation];
+    }
+    CLLocation *location = [locationManager location];
+    CLLocationCoordinate2D coordinate = [location coordinate];
+    [locationManager stopUpdatingLocation];
+    return coordinate;
+    
+}
+
+
 @end

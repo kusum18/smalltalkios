@@ -8,13 +8,15 @@
 
 #import "ViewController.h"
 #import "FriendTag.h"
+#import "HttpManager.h"
 
-@interface MentionViewController : ViewController<UITableViewDataSource,UITableViewDelegate>
+@interface MentionViewController : ViewController<UITableViewDataSource,UITableViewDelegate,HttpManagerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *userlistTable;
 
 @property (nonatomic,retain) id delegate;
 - (IBAction)pop:(id)sender;
+- (IBAction)back:(id)sender;
 
 @end
 

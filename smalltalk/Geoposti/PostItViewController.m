@@ -8,13 +8,18 @@
 
 #import "PostItViewController.h"
 #import "Location.h"
+#import "plist.h"
 #import "Constants.h"
+#import <CoreLocation/CoreLocation.h>
+
 
 @interface PostItViewController ()
-
+- (CLLocationCoordinate2D ) getCurrentLocation;
 @end
 
 @implementation PostItViewController
+
+@synthesize place,postText;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,10 +43,13 @@
 }
 
 -(void) sendRequest{
-//    CLLocationCoordinate2D position = [Location getCurrentLocation];
-    NSString *bodydata = [NSString stringWithFormat:@"id=1"];
-    HttpManager *requester = [[HttpManager alloc] init];
+    CLLocationCoordinate2D position = [self getCurrentLocation];
+    NSString *user_id = [plist getValueforKey:C_UserId];
+    NSString *latitude = [NSString stringWithFormat:@"%.4f",position.latitude];
+    NSString *longitude = [NSString stringWithFormat:@"%.4f",position.longitude];
+    NSString *bodydata = [NSString stringWithFormat:@"user_id=%@&lat=%@&long=%@&place=%@",user_id,latitude,longitude,self.place.text,self.postText.text];
     NSURL *url = [[NSURL alloc] initWithString:NotesSendReqUrl];
+    [[HttpManager alloc] initWithPOSTURL:url delegate:self forPostData:bodydata];
 //    [requester initWithPostURL:url delegate:self withBody:bodydata];
 //    [requester initWithURL:url delegate:self];
 }
@@ -55,8 +63,8 @@
 }
 
 
-- (void) connectionDidFail:(HttpManager *)theConnection withError:(NSError *)error{
-    
+- (void) connectionDidFail:(HttpManager *)theConnection{
+    NSLog(@"Error: New geo post");
 }
 
 - (void) connectionDidFinish:(HttpManager *)theConnection{
@@ -66,5 +74,28 @@
         NSLog(@"Start");
 //        [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+- (CLLocationCoordinate2D ) getCurrentLocation{
+    CLLocationManager *locationManager;
+    
+    if (!locationManager) {
+        //        [self initializeLocationManager];
+        locationManager = [[CLLocationManager alloc] init];
+        locationManager.delegate = self;
+        locationManager.distanceFilter = kCLDistanceFilterNone;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        [locationManager startUpdatingLocation];
+        
+    }else{
+        //        [locationManager startUpdatingLocation];
+    }
+    CLLocation *location = [locationManager location];
+    CLLocationCoordinate2D coordinate = [location coordinate];
+    [locationManager stopUpdatingLocation];
+    return coordinate;
+    
+}
+
 
 @end

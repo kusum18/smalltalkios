@@ -11,6 +11,7 @@
 @implementation QA
 
 @synthesize postText=_postText,userinfo=_userinfo,userid=_userid,count=_count,postid=_postid;
+@synthesize postTitle=_postTitle;
 
 
 -(id) init{
@@ -23,7 +24,7 @@
     return self;
 }
 
--(id) initForUser:(NSString *)username withUserId:(NSInteger)userid forPost:(NSInteger)postid withText:(NSString *)data andLikes:(NSInteger)count
+-(id) initForUser:(NSString *)username withUserId:(NSString *)userid forPost:(NSString *)postid withText:(NSString *)data andLikes:(NSString *)count
 {
     self = [super init];
     

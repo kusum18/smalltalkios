@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "smalltalk/Geoposti/PostItViewController.m"
-         timestampString = "391119311.525859"
+         timestampString = "391388445.60588"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "63"
-         endingLineNumber = "63"
+         startingLineNumber = "71"
+         endingLineNumber = "71"
          landmarkName = "-connectionDidFinish:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "smalltalk/Geoposti/PostItViewController.m"
-         timestampString = "391119311.525859"
+         timestampString = "391388445.60588"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "54"
-         endingLineNumber = "54"
+         startingLineNumber = "62"
+         endingLineNumber = "62"
          landmarkName = "-SendNotes:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "smalltalk/AppDelegate.m"
-         timestampString = "391335355.004655"
+         timestampString = "391390736.971196"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "120"
-         endingLineNumber = "120"
+         startingLineNumber = "86"
+         endingLineNumber = "86"
          landmarkName = "-application:openURL:sourceApplication:annotation:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -46,13 +46,78 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "smalltalk/MyFeed/QAViewController.m"
-         timestampString = "391288968.445021"
+         filePath = "smalltalk/Geoposti/PostItViewController.m"
+         timestampString = "391388526.351878"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "108"
-         endingLineNumber = "108"
-         landmarkName = "-connectionDidFinish:"
+         startingLineNumber = "47"
+         endingLineNumber = "47"
+         landmarkName = "-sendRequest"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "smalltalk/Notifications/NotificationsViewController.m"
+         timestampString = "391388529.507256"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "52"
+         endingLineNumber = "52"
+         landmarkName = "-fetchAllNotifications"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "smalltalk/MyFeed/NewPostViewController.m"
+         timestampString = "391388536.440534"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "63"
+         endingLineNumber = "63"
+         landmarkName = "-pushMentions:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "smalltalk/MyFeed/NewAnswerViewController.m"
+         timestampString = "391388539.691537"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "47"
+         endingLineNumber = "47"
+         landmarkName = "-postAnswer:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "smalltalk/MyFeed/MyFeedViewController.m"
+         timestampString = "391388904.472117"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "113"
+         endingLineNumber = "113"
+         landmarkName = "-fetchAllPosts"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "smalltalk/MyFeed/MentionViewController.m"
+         timestampString = "391388546.523467"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "89"
+         endingLineNumber = "89"
+         landmarkName = "-getfriendsList"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

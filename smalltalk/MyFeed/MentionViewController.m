@@ -8,11 +8,15 @@
 
 #import "MentionViewController.h"
 #import "FriendTag.h"
+#import "plist.h"
+#import "Constants.h"
 
 @interface MentionViewController ()
 
 @property (nonatomic,retain) NSMutableArray *friendsList;
 @property (nonatomic,retain) NSMutableArray *tagged;
+
+-(void) getfriendsList;
 
 @end
 
@@ -37,8 +41,9 @@ NSMutableArray *friendsList;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    FriendTag *tag = [[FriendTag alloc] initWithFriend:@"Sahitya" UserID:11222];
-    [_friendsList addObject:tag];
+    [self getfriendsList];
+//    FriendTag *tag = [[FriendTag alloc] initWithFriend:@"Sahitya" UserID:11222];
+//    [_friendsList addObject:tag];
     
     [userlistTable reloadData];
     // Do any additional setup after loading the view from its nib.
@@ -73,12 +78,17 @@ NSMutableArray *friendsList;
     return cell;
 }
 
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    UIView *view = [[UIView alloc] init];
-//    
-//    return view;
-//}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] init];
+    
+    return view;
+}
+
+-(void) getfriendsList{
+    NSString *url = [NSString stringWithFormat:@"%@/%@",friendsListURL,[plist getValueforKey:C_UserId]];
+    [[HttpManager alloc] initWithURL:url delegate:self];
+}
 
 #pragma mark Tableview delegate
 
@@ -89,6 +99,29 @@ NSMutableArray *friendsList;
     [self dismissViewControllerAnimated:YES completion:Nil];
 }
 
+- (IBAction)back:(id)sender {
+        [self dismissViewControllerAnimated:YES completion:Nil];
+}
+
+
+#pragma mark http manager delegate
+- (void) connectionDidFinish:(HttpManager *)theConnection{
+    NSError *error;
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:theConnection.receivedData options:kNilOptions error:&error];
+    NSArray *objs = [dict objectForKey:@"friends"];
+    [_friendsList removeAllObjects];
+    for (NSDictionary *friends in objs) {
+        FriendTag *tag = [[FriendTag alloc] init];
+        tag.userid = [friends objectForKey:@"user_id"];
+        tag.name = [friends objectForKey:@"user_name"];
+        [_friendsList addObject:tag];
+    }
+    [self.userlistTable reloadData];
+}
+
+-(void) connectionDidFail:(HttpManager *)theConnection{
+    
+}
 @end
 
 

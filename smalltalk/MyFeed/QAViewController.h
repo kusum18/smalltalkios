@@ -12,6 +12,7 @@
 @interface QAViewController : ViewController<UITableViewDelegate,UITableViewDataSource,HttpManagerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *postTable;
 - (IBAction)goBack:(id)sender;
+- (IBAction)writeAnswer:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loader;
 @end

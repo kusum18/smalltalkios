@@ -91,6 +91,11 @@
 		41C48B281751EAA9004BC6CA /* QACell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41C48B271751EAA9004BC6CA /* QACell.xib */; };
 		41C48B2B17535268004BC6CA /* PostsFeedParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C48B2A17535268004BC6CA /* PostsFeedParser.m */; };
 		41C48B2E1753535B004BC6CA /* PostsFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C48B2D1753535B004BC6CA /* PostsFeed.m */; };
+		41C48B311753E0C6004BC6CA /* plist.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C48B301753E0C5004BC6CA /* plist.m */; };
+		41C48B381753E673004BC6CA /* NewAnswerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C48B361753E672004BC6CA /* NewAnswerViewController.m */; };
+		41C48B391753E673004BC6CA /* NewAnswerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41C48B371753E672004BC6CA /* NewAnswerViewController.xib */; };
+		41C48B3C175409A1004BC6CA /* GeoPost.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C48B3B175409A1004BC6CA /* GeoPost.m */; };
+		41C48B3E17542340004BC6CA /* data.plist in Resources */ = {isa = PBXBuildFile; fileRef = 41C48B3D17542340004BC6CA /* data.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -206,6 +211,14 @@
 		41C48B2A17535268004BC6CA /* PostsFeedParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsFeedParser.m; sourceTree = "<group>"; };
 		41C48B2C1753535A004BC6CA /* PostsFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsFeed.h; sourceTree = "<group>"; };
 		41C48B2D1753535B004BC6CA /* PostsFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsFeed.m; sourceTree = "<group>"; };
+		41C48B2F1753E0C5004BC6CA /* plist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = plist.h; path = Helper/plist.h; sourceTree = "<group>"; };
+		41C48B301753E0C5004BC6CA /* plist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = plist.m; path = Helper/plist.m; sourceTree = "<group>"; };
+		41C48B351753E672004BC6CA /* NewAnswerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewAnswerViewController.h; sourceTree = "<group>"; };
+		41C48B361753E672004BC6CA /* NewAnswerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewAnswerViewController.m; sourceTree = "<group>"; };
+		41C48B371753E672004BC6CA /* NewAnswerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewAnswerViewController.xib; sourceTree = "<group>"; };
+		41C48B3A175409A0004BC6CA /* GeoPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeoPost.h; sourceTree = "<group>"; };
+		41C48B3B175409A1004BC6CA /* GeoPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeoPost.m; sourceTree = "<group>"; };
+		41C48B3D17542340004BC6CA /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +261,8 @@
 				2B47FFD0173BA07500A243BE /* FBHelper.m */,
 				41371F95173DA1EF00C90900 /* Location.h */,
 				41371F96173DA1EF00C90900 /* Location.m */,
+				41C48B2F1753E0C5004BC6CA /* plist.h */,
+				41C48B301753E0C5004BC6CA /* plist.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -357,6 +372,7 @@
 				2B6223A9173B80FF00E45770 /* Default.png */,
 				2B6223AB173B80FF00E45770 /* Default@2x.png */,
 				2B6223AD173B80FF00E45770 /* Default-568h@2x.png */,
+				41C48B3D17542340004BC6CA /* data.plist */,
 			);
 			name = "Supporting Files";
 			path = smalltalk;
@@ -451,6 +467,8 @@
 				41C48A94174FED16004BC6CA /* PostItViewController.h */,
 				41C48A95174FED16004BC6CA /* PostItViewController.m */,
 				41C48A96174FED16004BC6CA /* PostItViewController.xib */,
+				41C48B3A175409A0004BC6CA /* GeoPost.h */,
+				41C48B3B175409A1004BC6CA /* GeoPost.m */,
 			);
 			name = Geopostit;
 			path = Geoposti;
@@ -525,6 +543,9 @@
 				41C48B221751EA2F004BC6CA /* QACell.h */,
 				41C48B231751EA2F004BC6CA /* QACell.m */,
 				41C48B271751EAA9004BC6CA /* QACell.xib */,
+				41C48B351753E672004BC6CA /* NewAnswerViewController.h */,
+				41C48B361753E672004BC6CA /* NewAnswerViewController.m */,
+				41C48B371753E672004BC6CA /* NewAnswerViewController.xib */,
 			);
 			name = QA;
 			sourceTree = "<group>";
@@ -621,6 +642,8 @@
 				41C48AAA1750F830004BC6CA /* thumb-up.png in Resources */,
 				41C48AB21751243F004BC6CA /* QAViewController.xib in Resources */,
 				41C48B281751EAA9004BC6CA /* QACell.xib in Resources */,
+				41C48B391753E673004BC6CA /* NewAnswerViewController.xib in Resources */,
+				41C48B3E17542340004BC6CA /* data.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -656,6 +679,9 @@
 				41C48B241751EA2F004BC6CA /* QACell.m in Sources */,
 				41C48B2B17535268004BC6CA /* PostsFeedParser.m in Sources */,
 				41C48B2E1753535B004BC6CA /* PostsFeed.m in Sources */,
+				41C48B311753E0C6004BC6CA /* plist.m in Sources */,
+				41C48B381753E673004BC6CA /* NewAnswerViewController.m in Sources */,
+				41C48B3C175409A1004BC6CA /* GeoPost.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

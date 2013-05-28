@@ -7,8 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "HttpManager.h"
 
-@interface GeoPostItViewController : ViewController<UITableViewDataSource,UITableViewDelegate>
+@interface GeoPostItViewController : ViewController<UITableViewDataSource,UITableViewDelegate,HttpManagerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *notesTable;
 
 - (IBAction)write:(id)sender;

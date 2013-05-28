@@ -11,7 +11,7 @@
 
 @interface Location : NSObject <CLLocationManagerDelegate>
 
-+ (CLLocationCoordinate2D ) getCurrentLocation;
+//+ (CLLocationCoordinate2D ) getCurrentLocation;
 
 
 @end

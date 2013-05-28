@@ -21,7 +21,6 @@
 
 @protocol HttpManagerDelegate<NSObject>
 
-//- (void) n:(HttpManager *)theConnection;
 - (void) connectionDidFinish:(HttpManager *)theConnection;
 -(void) connectionDidFail:(HttpManager *)theConnection;
 

@@ -20,6 +20,8 @@
     return self;
 }
 
--(id) initWithPostId:(NSString *)pID PostText:(NSString *)pText 
+-(id) initWithPostId:(NSString *)pID PostText:(NSString *)pText{
+    
+}
 
 @end

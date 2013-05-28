@@ -8,6 +8,8 @@
 
 #import "NewPostViewController.h"
 #import "MentionViewController.h"
+#import "Constants.h"
+#import "plist.h"
 
 
 @interface NewPostViewController ()
@@ -19,6 +21,7 @@
 @implementation NewPostViewController
 NSMutableArray *friendsList;
 @synthesize phoneBookLabel,taggedFriendsTable,nofriendsLabel,postDetail;
+@synthesize postTitleLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,8 +53,19 @@ NSMutableArray *friendsList;
 }
 
 - (IBAction)pushMentions:(id)sender {
-    MentionViewController *mention = [[MentionViewController alloc] init];
-    [self.navigationController pushViewController:mention animated:YES];
+    NSString *_friendsList = @"";
+    NSString *_delimeter = @"";
+    for (FriendTag *tag in friendsList) {
+        _friendsList = [_friendsList stringByAppendingString:_delimeter];
+        _friendsList = [_friendsList  stringByAppendingString:tag.name];
+        _delimeter = @",";
+    }
+    NSString *bodydata = [NSString stringWithFormat:@"%user_id=%@&post_title=%@&post_text=%@&friends_list=%@",
+                                                    [plist getValueforKey:C_UserId],
+                                                    postTitleLabel.text,
+                                                    postDetail.text,
+                                                    _friendsList];
+    [[HttpManager alloc] initWithPOSTURL:[NSURL URLWithString:newQuestionURL] delegate:self forPostData:bodydata];
 }
 - (IBAction)tagFriends:(id)sender {
     MentionViewController *mention = [[MentionViewController alloc] init];
@@ -118,4 +132,16 @@ NSMutableArray *friendsList;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+
+#pragma mark http manger delegates
+
+- (void) connectionDidFinish:(HttpManager *)theConnection{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void) connectionDidFail:(HttpManager *)theConnection{
+    NSLog(@"Error: Notifications");
+}
+
 @end

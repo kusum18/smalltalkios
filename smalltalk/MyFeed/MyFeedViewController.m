@@ -12,8 +12,13 @@
 #import "QAViewController.h"
 #import "AnswersParser.h"
 #import "Constants.h"
+#import "plist.h"
+#import "QA.h"
 
 @interface MyFeedViewController ()
+{
+    NSMutableArray *_feeds;
+}
 
 -(void) fetchAllPosts;
 
@@ -39,6 +44,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"%@",[plist getValueforKey:C_UserId]);
     [self fetchAllPosts];
     // Do any additional setup after loading the view from its nib.
 }
@@ -52,7 +58,7 @@
 #pragma mark TableView data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return [_feeds count];
 }
 
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
@@ -67,10 +73,11 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"QuestionCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    [cell.postme setText:@"Post text"];
+    QA *feed = [_feeds objectAtIndex:indexPath.row];
+    [cell.postme setText:[feed postText]];
     [cell.postme setNumberOfLines:0];
     [cell.postme sizeToFit];
-    [cell.titleLabel setText:@"Title"];
+    [cell.titleLabel setText:[feed postTitle]];
     return cell;
 }
 
@@ -103,13 +110,26 @@
 # pragma mark server api
 
 -(void) fetchAllPosts{
-    
+    NSString *url = [NSString stringWithFormat:@"%@/%@",feedsURL,[plist getValueforKey:C_UserId]];
+    [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
 }
 
 - (void) connectionDidFinish:(HttpManager *)theConnection{
-    
+    NSError *error;
+    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:theConnection.receivedData options:kNilOptions error:&error];
+    NSArray *objs = [dict objectForKey:@"questions"];
+    [_feeds removeAllObjects];
+    for (NSDictionary *posts in objs) {
+        QA *qa = [[QA alloc] init];
+        qa.count = [posts objectForKey:@"count"];
+        qa.postText = [posts objectForKey:@"post_text"];
+        qa.userinfo = [posts objectForKey:@"user_info"];
+        qa.postid = [posts objectForKey:@"id"];
+        qa.postTitle = [posts objectForKey:@"post_title"];
+        [_feeds addObject:qa];
+    }
+    [self.feedTable reloadData];
 }
-
 -(void) connectionDidFail:(HttpManager *)theConnection{
     
 }

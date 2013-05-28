@@ -10,6 +10,7 @@
 #import "QA.h"
 #import "Constants.h"
 #import "AnswersParser.h"
+#import "NewAnswerViewController.h"
 
 @interface QAViewController ()
 
@@ -111,10 +112,10 @@
     [_posts removeAllObjects];
     for (NSDictionary *posts in objs) {
         QA *qa = [[QA alloc] init];
-        qa.count = [[posts objectForKey:@"count"] intValue];
+        qa.count = [posts objectForKey:@"count"];
         qa.postText = [posts objectForKey:@"post_text"];
         qa.userinfo = [posts objectForKey:@"user_info"];
-        qa.postid = [[posts objectForKey:@"id"] intValue];
+        qa.postid = [posts objectForKey:@"id"];
         [_posts addObject:qa];
     }
     [self.postTable setHidden:NO];
@@ -125,7 +126,17 @@
     NSLog(@"Error");
 }
 
+#pragma mark user actions
+
 - (IBAction)goBack:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (IBAction)writeAnswer:(id)sender {
+    NewAnswerViewController *controller = [[NewAnswerViewController alloc] init];
+    controller.question_id = [[_posts objectAtIndex:0] postid];
+    controller.question_text = [[_posts objectAtIndex:0] postText];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
 @end

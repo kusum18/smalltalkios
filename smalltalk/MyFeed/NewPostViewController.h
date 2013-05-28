@@ -21,4 +21,5 @@
 - (IBAction)tagFriends:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UITextView *postDetail;
+@property (strong, nonatomic) IBOutlet UITextField *postTitleLabel;
 @end
