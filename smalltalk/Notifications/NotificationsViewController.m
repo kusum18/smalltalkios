@@ -9,9 +9,10 @@
 #import "NotificationsViewController.h"
 #import "HomeViewController.h"
 #import "QA.h"
-#import "QuestionCell.h"
+//#import "QuestionCell.h"
 #import "plist.h"
 #import "Constants.h"
+#import "NotificationsCell.h"
 #import "QAViewController.h"
 
 @interface NotificationsViewController ()
@@ -32,6 +33,7 @@
         // Custom initialization
         self.tabBarItem.image = [UIImage imageNamed:@"speaker-electric.png"];
         self.tabBarItem.title=@"Notification";
+        _notifications = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -42,6 +44,10 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+-(void) viewWillAppear:(BOOL)animated{
+    [self fetchAllNotifications ];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -50,7 +56,8 @@
 
 - (void) fetchAllNotifications
 {
-    NSString *url = [NSString stringWithFormat:@"%@/%@",notificationsURL,[plist getValueforKey:C_UserId]];
+    NSString *url = [NSString stringWithFormat:@"%@/3/0/5",notificationsURL];
+    //    NSString *url = [NSString stringWithFormat:@"%@/%@",notificationsURL,[plist getValueforKey:C_UserId]];
     [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
 }
 
@@ -64,6 +71,7 @@
 - (void) connectionDidFinish:(HttpManager *)theConnection{
     NSError *error;
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:theConnection.receivedData options:kNilOptions error:&error];
+    NSString *jsontext = [[NSString alloc] initWithData:theConnection.receivedData encoding:NSUTF8StringEncoding];
     NSArray *objs = [dict objectForKey:@"questions"];
     [_notifications removeAllObjects];
     for (NSDictionary *posts in objs) {
@@ -75,7 +83,7 @@
         qa.postTitle = [posts objectForKey:@"post_title"];
         [_notifications addObject:qa];
     }
-        [self.notificationsTable reloadData];
+    [self.notificationsTable reloadData];
 }
 
 -(void) connectionDidFail:(HttpManager *)theConnection{
@@ -94,18 +102,18 @@
 // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *simpleTableIdentifier = @"QuestionCell";
+    static NSString *simpleTableIdentifier = @"NotificationsCell";
     
-    QuestionCell *cell = (QuestionCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    NotificationsCell *cell = (NotificationsCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     if (!cell) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"QuestionCell" owner:self options:nil];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"NotificationsCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    [cell.postme setText:[[_notifications objectAtIndex:indexPath.row] postText]];
-    [cell.postme setNumberOfLines:0];
-    [cell.postme sizeToFit];
-    [cell.titleLabel setText:[[_notifications objectAtIndex:indexPath.row] postTitle]];
+    [cell.postText setText:[[_notifications objectAtIndex:indexPath.row] postText]];
+    [cell.postText setNumberOfLines:0];
+    [cell.postText sizeToFit];
+//    [cell.titleLabel setText:[[_notifications objectAtIndex:indexPath.row] postTitle]];
     return cell;
 }
 
@@ -125,6 +133,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     QAViewController *qavc = [[QAViewController alloc] init];
     [self.navigationController pushViewController:qavc animated:YES];
+    qavc.question_id = [[_notifications objectAtIndex:indexPath.row] postid];
     //    AnswersParser *p = [[AnswersParser alloc] init];
     //    [p getAllAnswersForQuestion:1];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

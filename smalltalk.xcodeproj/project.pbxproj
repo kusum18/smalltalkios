@@ -43,6 +43,9 @@
 		410EF787174F32AB008BDC74 /* 2-red-menu-bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 410EF77D174F32AA008BDC74 /* 2-red-menu-bar@2x.png */; };
 		410EF788174F32AB008BDC74 /* 2-red-settings-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 410EF77E174F32AB008BDC74 /* 2-red-settings-button.png */; };
 		410EF789174F32AB008BDC74 /* 2-red-settings-button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 410EF77F174F32AB008BDC74 /* 2-red-settings-button@2x.png */; };
+		41126A86175899EF0094CC7E /* NSString+NSString_HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 41126A85175899EF0094CC7E /* NSString+NSString_HTML.m */; settings = {COMPILER_FLAGS = " -ObjC"; }; };
+		41126A891758AF770094CC7E /* NotificationsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41126A881758AF770094CC7E /* NotificationsCell.m */; };
+		41126A8B1758AF980094CC7E /* NotificationsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41126A8A1758AF980094CC7E /* NotificationsCell.xib */; };
 		411E5494174CB6CA0023163E /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 411E5493174CB6CA0023163E /* Parse.framework */; };
 		411E5496174CB70A0023163E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 411E5495174CB70A0023163E /* AudioToolbox.framework */; };
 		411E5498174CB7120023163E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 411E5497174CB7120023163E /* CFNetwork.framework */; };
@@ -147,6 +150,11 @@
 		410EF77D174F32AA008BDC74 /* 2-red-menu-bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2-red-menu-bar@2x.png"; sourceTree = "<group>"; };
 		410EF77E174F32AB008BDC74 /* 2-red-settings-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2-red-settings-button.png"; sourceTree = "<group>"; };
 		410EF77F174F32AB008BDC74 /* 2-red-settings-button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "2-red-settings-button@2x.png"; sourceTree = "<group>"; };
+		41126A84175899EF0094CC7E /* NSString+NSString_HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+NSString_HTML.h"; path = "Helper/NSString+NSString_HTML.h"; sourceTree = "<group>"; };
+		41126A85175899EF0094CC7E /* NSString+NSString_HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+NSString_HTML.m"; path = "Helper/NSString+NSString_HTML.m"; sourceTree = "<group>"; };
+		41126A871758AF770094CC7E /* NotificationsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsCell.h; sourceTree = "<group>"; };
+		41126A881758AF770094CC7E /* NotificationsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsCell.m; sourceTree = "<group>"; };
+		41126A8A1758AF980094CC7E /* NotificationsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationsCell.xib; sourceTree = "<group>"; };
 		411E5493174CB6CA0023163E /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		411E5495174CB70A0023163E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		411E5497174CB7120023163E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -269,6 +277,8 @@
 				41371F96173DA1EF00C90900 /* Location.m */,
 				41C48B2F1753E0C5004BC6CA /* plist.h */,
 				41C48B301753E0C5004BC6CA /* plist.m */,
+				41126A84175899EF0094CC7E /* NSString+NSString_HTML.h */,
+				41126A85175899EF0094CC7E /* NSString+NSString_HTML.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -463,6 +473,9 @@
 				41A7E3EA174E194B00F4E796 /* NotificationsViewController.h */,
 				41A7E3EB174E194B00F4E796 /* NotificationsViewController.m */,
 				41A7E3EC174E194B00F4E796 /* NotificationsViewController.xib */,
+				41126A871758AF770094CC7E /* NotificationsCell.h */,
+				41126A881758AF770094CC7E /* NotificationsCell.m */,
+				41126A8A1758AF980094CC7E /* NotificationsCell.xib */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -656,6 +669,7 @@
 				418F7F391755C5DD005387E7 /* check.png in Resources */,
 				418F7F3D1755EDCD005387E7 /* uncheck.png in Resources */,
 				41B2C728175839FE00A6D3D6 /* chat-blank-128x128.png in Resources */,
+				41126A8B1758AF980094CC7E /* NotificationsCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,6 +708,8 @@
 				41C48B311753E0C6004BC6CA /* plist.m in Sources */,
 				41C48B381753E673004BC6CA /* NewAnswerViewController.m in Sources */,
 				41C48B3C175409A1004BC6CA /* GeoPost.m in Sources */,
+				41126A86175899EF0094CC7E /* NSString+NSString_HTML.m in Sources */,
+				41126A891758AF770094CC7E /* NotificationsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

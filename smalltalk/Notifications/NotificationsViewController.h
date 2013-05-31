@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "HttpManager.h"
 
-@interface NotificationsViewController : ViewController<HttpManagerDelegate>
+@interface NotificationsViewController : ViewController<UITableViewDataSource, UITableViewDelegate, HttpManagerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *notificationsTable;
 @end

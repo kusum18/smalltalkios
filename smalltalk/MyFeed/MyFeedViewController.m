@@ -18,6 +18,9 @@
 @interface MyFeedViewController ()
 {
     NSMutableArray *_feeds;
+    NSInteger FriendsFeed;
+    NSInteger UserQuestions;
+    NSString *_url;
 }
 
 -(void) fetchAllPosts;
@@ -37,6 +40,10 @@
         self.tabBarItem.title=@"Browse Q's";
         self.postsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 10.0f)] ;
         _feeds = [[NSMutableArray alloc] init];
+        _url = feedsURL;
+        FriendsFeed = 0;
+        UserQuestions = 1;
+        [self.toggle setSelectedSegmentIndex:FriendsFeed];
     }
     return self;
 }
@@ -44,7 +51,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self fetchAllPosts];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -52,6 +58,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+        [self fetchAllPosts];
 }
 
 #pragma mark TableView data source
@@ -75,7 +85,7 @@
     QA *feed = [_feeds objectAtIndex:indexPath.row];
     [cell.postme setText:[feed postText]];
     [cell.postme setNumberOfLines:0];
-    [cell.postme sizeToFit];
+//    [cell.postme sizeToFit];
     [cell.titleLabel setText:[feed postTitle]];
     return cell;
 }
@@ -105,19 +115,30 @@
     [self.navigationController pushViewController:qa animated:YES];
 }
 
+- (IBAction)toggleChange:(id)sender {
+    UISegmentedControl *toggle = (UISegmentedControl *)sender;
+    if (toggle.selectedSegmentIndex==FriendsFeed) {
+        _url = feedsURL;
+    }else{
+        _url = selfQuestionsURL;
+    }
+    [self fetchAllPosts];
+}
+
 # pragma mark server api
 
 -(void) fetchAllPosts{
     NSString *user_id = [plist getValueforKey:C_UserId];
     NSInteger startIndex = 0;
     NSInteger count = 3;
-    NSString *url = [NSString stringWithFormat:@"%@/%@/%d/%d",feedsURL,user_id,startIndex,count];
+    NSString *url = [NSString stringWithFormat:@"%@/%@/%d/%d",_url,user_id,startIndex,count];
     [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
 }
 
 - (void) connectionDidFinish:(HttpManager *)theConnection{
     NSError *error;
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:theConnection.receivedData options:kNilOptions error:&error];
+    
     NSArray *objs = [dict objectForKey:@"questions"];
     [_feeds removeAllObjects];
     for (NSDictionary *posts in objs) {

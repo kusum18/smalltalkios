@@ -13,6 +13,8 @@
 @interface MyFeedViewController : ViewController<UITableViewDataSource,UITableViewDelegate,HttpManagerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *postsTableView;
 - (IBAction)WriteQuestion:(id)sender;
+- (IBAction)toggleChange:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UISegmentedControl *toggle;
 @property (weak, nonatomic) IBOutlet UITableView *feedTable;
 @end

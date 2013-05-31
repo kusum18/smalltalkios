@@ -61,11 +61,12 @@ NSMutableArray *friendsList;
         _delimeter = @",";
     }
     NSString *userId = [plist getValueforKey:C_UserId];
-    NSString *bodydata = [NSString stringWithFormat:@"user_id=%@&post_title=%@&post_text=%@&friends_list=%@",
+    NSString *bodydata = [NSString stringWithFormat:@"UID=%@&title=%@&detail=%@&tagged_ppl=%@",
                                                     userId,
                                                     postTitleLabel.text,
                                                     postDetail.text,
                                                     _friendsList];
+//    [bodydata encodeString];
     [[HttpManager alloc] initWithPOSTURL:[NSURL URLWithString:newQuestionURL] delegate:self forPostData:bodydata];
 }
 - (IBAction)tagFriends:(id)sender {
