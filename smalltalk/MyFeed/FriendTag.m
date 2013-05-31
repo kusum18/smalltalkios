@@ -10,25 +10,25 @@
 
 @implementation FriendTag
 
-@synthesize name=_name,userid=_userid;
+@synthesize name=_name,userid=_userid,lstatus=_lstatus,fstatus=_fstatus;
 
 -(id) init{
     self = [super init];
     
     if(self){
-        self.name = [[NSString alloc] init];
-        self.userid = 0;
+        self.name = @"";
+        self.userid = @"" ;
     }
     
     return self;
 }
 
 
--(id) initWithFriend:(NSString *)name UserID:(NSInteger)userid{
+-(id) initWithFriend:(NSString *)name UserID:(NSString *)userid{
     self = [super init];
     
     if(self){
-        self.name = [[NSString alloc] initWithString:name];
+        self.name = name;
         self.userid = userid;
     }
     

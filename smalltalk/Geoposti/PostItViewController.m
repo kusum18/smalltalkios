@@ -47,8 +47,8 @@
     NSString *user_id = [plist getValueforKey:C_UserId];
     NSString *latitude = [NSString stringWithFormat:@"%.4f",position.latitude];
     NSString *longitude = [NSString stringWithFormat:@"%.4f",position.longitude];
-    NSString *bodydata = [NSString stringWithFormat:@"user_id=%@&lat=%@&long=%@&place=%@",user_id,latitude,longitude,self.place.text,self.postText.text];
-    NSURL *url = [[NSURL alloc] initWithString:NotesSendReqUrl];
+    NSString *bodydata = [NSString stringWithFormat:@"user_id=%@&lat=%@&long=%@&place=%@&notes=%@",user_id,latitude,longitude,self.place.text,self.postText.text];
+    NSURL *url = [[NSURL alloc] initWithString:NewNotesSendReqUrl];
     [[HttpManager alloc] initWithPOSTURL:url delegate:self forPostData:bodydata];
 //    [requester initWithPostURL:url delegate:self withBody:bodydata];
 //    [requester initWithURL:url delegate:self];
@@ -72,7 +72,7 @@
     NSLog(@"Start");
     NSLog(@"d %@",[[NSString alloc] initWithData:theConnection.receivedData encoding:NSASCIIStringEncoding]);
         NSLog(@"Start");
-//        [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

@@ -87,7 +87,7 @@ NSMutableArray *friendsList;
 
 -(void) getfriendsList{
     NSString *url = [NSString stringWithFormat:@"%@/%@",friendsListURL,[plist getValueforKey:C_UserId]];
-    [[HttpManager alloc] initWithURL:url delegate:self];
+    [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
 }
 
 #pragma mark Tableview delegate
@@ -112,8 +112,10 @@ NSMutableArray *friendsList;
     [_friendsList removeAllObjects];
     for (NSDictionary *friends in objs) {
         FriendTag *tag = [[FriendTag alloc] init];
-        tag.userid = [friends objectForKey:@"user_id"];
-        tag.name = [friends objectForKey:@"user_name"];
+        tag.userid = [friends objectForKey:@"fid"];
+        tag.name = [friends objectForKey:@"fname"];
+        tag.fstatus = [friends objectForKey:@"fstatus"];
+        tag.lstatus = [friends objectForKey:@"lstatus"];
         [_friendsList addObject:tag];
     }
     [self.userlistTable reloadData];

@@ -10,9 +10,21 @@
 #import "HttpManager.h"
 
 @interface QAViewController : ViewController<UITableViewDelegate,UITableViewDataSource,HttpManagerDelegate>
+{
+    NSString *_question_id;
+}
+@property (strong, nonatomic) IBOutlet UIButton *writeButton;
+
+@property (strong, nonatomic) IBOutlet UIButton *acceptedAnswer;
+@property (strong, nonatomic) IBOutlet UILabel *AnswerText;
+@property (nonatomic,retain) NSString *question_id;
 @property (strong, nonatomic) IBOutlet UITableView *postTable;
+
 - (IBAction)goBack:(id)sender;
 - (IBAction)writeAnswer:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loader;
+
+-(void) acceptAnswer:(NSInteger)row;
+
 @end

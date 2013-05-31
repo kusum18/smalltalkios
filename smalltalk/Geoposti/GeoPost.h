@@ -18,6 +18,7 @@
     NSString *_likes;
     NSString *_latitude;
     NSString *_longitude;
+    NSString *_distance;
 }
 
 @property (nonatomic,retain) NSString *postId;
@@ -28,5 +29,6 @@
 @property (nonatomic,retain) NSString *likes;
 @property (nonatomic,retain) NSString *latitude;
 @property (nonatomic,retain) NSString *longitude;
+@property (nonatomic,retain) NSString *distance;
 
 @end

@@ -22,9 +22,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch
-    [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge|
-     UIRemoteNotificationTypeAlert|
-     UIRemoteNotificationTypeSound];
+    [[UIApplication sharedApplication]
+     registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeBadge |
+      UIRemoteNotificationTypeSound |
+      UIRemoteNotificationTypeAlert)];
+    [Parse setApplicationId:@"Ai4JS8bvQ0HddJeOBOiCT3JrxLMtQTYynM0nBtkf" clientKey:@"s381ldP6DHTJnlsKqLkUb0HBV74k9Q1wX6hYV6Ee"];
     [plist checkIfFileExists];
     [plist writeToPlistsetValue:@"1" forKey:C_UserId];
     TBViewController *homeController = [[TBViewController alloc] init];
@@ -116,6 +119,12 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     // Store the deviceToken in the current installation and save it to Parse.
+    NSString *tokenStr = [deviceToken description];
+    NSString *pushToken = [[[tokenStr
+                              stringByReplacingOccurrencesOfString:@"<" withString:@""]
+                             stringByReplacingOccurrencesOfString:@">" withString:@""]
+                            stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSLog(@"%@",pushToken);
     PFInstallation *currentInstallation = [PFInstallation currentInstallation];
     [currentInstallation setDeviceTokenFromData:deviceToken];
     [currentInstallation saveInBackground];

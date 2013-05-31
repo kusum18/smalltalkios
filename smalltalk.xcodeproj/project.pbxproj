@@ -54,6 +54,8 @@
 		41371F97173DA1EF00C90900 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 41371F96173DA1EF00C90900 /* Location.m */; };
 		41371FA0173DC59900C90900 /* MyFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41371F9E173DC59900C90900 /* MyFeedViewController.m */; };
 		41371FA1173DC59900C90900 /* MyFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41371F9F173DC59900C90900 /* MyFeedViewController.xib */; };
+		418F7F391755C5DD005387E7 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 418F7F381755C5DD005387E7 /* check.png */; };
+		418F7F3D1755EDCD005387E7 /* uncheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 418F7F3C1755EDCD005387E7 /* uncheck.png */; };
 		41A7E3DD174E05B600F4E796 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A7E3DB174E05B600F4E796 /* TabViewController.m */; };
 		41A7E3DE174E05B600F4E796 /* TabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41A7E3DC174E05B600F4E796 /* TabViewController.xib */; };
 		41A7E3E2174E09D500F4E796 /* TBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A7E3E0174E09D500F4E796 /* TBViewController.m */; };
@@ -70,6 +72,7 @@
 		41A7E40C174E223000F4E796 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 41A7E40B174E223000F4E796 /* gear.png */; };
 		41A7E40F174E238F00F4E796 /* QuestionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A7E40E174E238F00F4E796 /* QuestionCell.m */; };
 		41A7E411174E241600F4E796 /* QuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41A7E410174E241600F4E796 /* QuestionCell.xib */; };
+		41B2C728175839FE00A6D3D6 /* chat-blank-128x128.png in Resources */ = {isa = PBXBuildFile; fileRef = 41B2C727175839FE00A6D3D6 /* chat-blank-128x128.png */; };
 		41C48A93174F70D2004BC6CA /* write.png in Resources */ = {isa = PBXBuildFile; fileRef = 41C48A92174F70D2004BC6CA /* write.png */; };
 		41C48A97174FED16004BC6CA /* PostItViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C48A95174FED16004BC6CA /* PostItViewController.m */; };
 		41C48A98174FED16004BC6CA /* PostItViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41C48A96174FED16004BC6CA /* PostItViewController.xib */; };
@@ -158,6 +161,8 @@
 		41371F9D173DC59900C90900 /* MyFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFeedViewController.h; sourceTree = "<group>"; };
 		41371F9E173DC59900C90900 /* MyFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFeedViewController.m; sourceTree = "<group>"; };
 		41371F9F173DC59900C90900 /* MyFeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFeedViewController.xib; sourceTree = "<group>"; };
+		418F7F381755C5DD005387E7 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
+		418F7F3C1755EDCD005387E7 /* uncheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uncheck.png; sourceTree = "<group>"; };
 		41A7E3DA174E05B600F4E796 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabViewController.h; path = test/TabViewController.h; sourceTree = "<group>"; };
 		41A7E3DB174E05B600F4E796 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabViewController.m; path = test/TabViewController.m; sourceTree = "<group>"; };
 		41A7E3DC174E05B600F4E796 /* TabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TabViewController.xib; path = test/TabViewController.xib; sourceTree = "<group>"; };
@@ -180,6 +185,7 @@
 		41A7E40D174E238F00F4E796 /* QuestionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuestionCell.h; sourceTree = "<group>"; };
 		41A7E40E174E238F00F4E796 /* QuestionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuestionCell.m; sourceTree = "<group>"; };
 		41A7E410174E241600F4E796 /* QuestionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuestionCell.xib; sourceTree = "<group>"; };
+		41B2C727175839FE00A6D3D6 /* chat-blank-128x128.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "chat-blank-128x128.png"; path = "../chat-blank-128x128.png"; sourceTree = "<group>"; };
 		41C48A92174F70D2004BC6CA /* write.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = write.png; sourceTree = "<group>"; };
 		41C48A94174FED16004BC6CA /* PostItViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostItViewController.h; sourceTree = "<group>"; };
 		41C48A95174FED16004BC6CA /* PostItViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostItViewController.m; sourceTree = "<group>"; };
@@ -363,6 +369,9 @@
 		2B62239E173B80FF00E45770 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				41B2C727175839FE00A6D3D6 /* chat-blank-128x128.png */,
+				418F7F3C1755EDCD005387E7 /* uncheck.png */,
+				418F7F381755C5DD005387E7 /* check.png */,
 				410EF775174F328D008BDC74 /* profile */,
 				410EF774174F326A008BDC74 /* misc */,
 				2B62239F173B80FF00E45770 /* smalltalk-Info.plist */,
@@ -644,6 +653,9 @@
 				41C48B281751EAA9004BC6CA /* QACell.xib in Resources */,
 				41C48B391753E673004BC6CA /* NewAnswerViewController.xib in Resources */,
 				41C48B3E17542340004BC6CA /* data.plist in Resources */,
+				418F7F391755C5DD005387E7 /* check.png in Resources */,
+				418F7F3D1755EDCD005387E7 /* uncheck.png in Resources */,
+				41B2C728175839FE00A6D3D6 /* chat-blank-128x128.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -766,8 +778,8 @@
 		2B6223B8173B80FF00E45770 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ankur Kothari (99DZ37BYTG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ankur Kothari (99DZ37BYTG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: NIrav Vora (M9BKQMNG4N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: NIrav Vora (M9BKQMNG4N)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -776,8 +788,8 @@
 				GCC_PREFIX_HEADER = "smalltalk/smalltalk-Prefix.pch";
 				INFOPLIST_FILE = "smalltalk/smalltalk-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C3FD8CB9-9046-4956-9738-4DD7FF10AF8C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C3FD8CB9-9046-4956-9738-4DD7FF10AF8C";
+				PROVISIONING_PROFILE = "8BA662D7-58EC-4A1F-A799-8AC8B450ACB8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8BA662D7-58EC-4A1F-A799-8AC8B450ACB8";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -786,8 +798,8 @@
 		2B6223B9173B80FF00E45770 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ankur Kothari (99DZ37BYTG)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ankur Kothari (99DZ37BYTG)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: NIrav Vora (M9BKQMNG4N)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: NIrav Vora (M9BKQMNG4N)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -796,8 +808,8 @@
 				GCC_PREFIX_HEADER = "smalltalk/smalltalk-Prefix.pch";
 				INFOPLIST_FILE = "smalltalk/smalltalk-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "C3FD8CB9-9046-4956-9738-4DD7FF10AF8C";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "C3FD8CB9-9046-4956-9738-4DD7FF10AF8C";
+				PROVISIONING_PROFILE = "8BA662D7-58EC-4A1F-A799-8AC8B450ACB8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8BA662D7-58EC-4A1F-A799-8AC8B450ACB8";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

@@ -9,24 +9,26 @@
 
 /* URL Zone */
 #define CBaseURL @"http://localhost/smalltalk"
-#define AnswersURl @"http://127.0.0.1:8080/ss.txt"
 #define TestURL @"http://www.google.com"
 
 
 // Screen 1
-#define newAnswerURL @"http://smalltalk.zzl.org/index.php/newanswer/answer/"
-#define feedsURL @""
-#define friendsListURL @""
+#define newAnswerURL @"http://smalltalk.zzl.org/st/index.php/newanswer/answer/"
+#define feedsURL @"http://smalltalk.zzl.org/st/index.php/questions/getquestions"
+#define friendsListURL @"http://smalltalk.zzl.org/st/index.php/fetchfriends/friendlist"
 #define newQuestionURL @""
+#define AnswersURl @"http://smalltalk.zzl.org/st/index.php/answers/getanswers"
+#define AcceptedAnswerURL @"http://smalltalk.zzl.org/st/index.php/acceptedAnswer/accepted"
 
 #define C_UserId @"user_id"
+
 
 // Screen 2
 #define notificationsURL @""
 
 
 // Screen 3
-#define fetchAllNotesURL @""
-#define NotesSendReqUrl @"http://127.0.0.1:8080/smalltalk/index.php/post/user/"
+#define fetchAllNotesURL @"http://smalltalk.zzl.org/st/index.php/postretrieval/retrieval"
+#define NewNotesSendReqUrl @"http://smalltalk.zzl.org/st/index.php/newpostit/postit"
 
 // Screen 4

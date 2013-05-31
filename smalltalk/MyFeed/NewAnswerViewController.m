@@ -46,7 +46,8 @@
 - (IBAction)postAnswer:(id)sender {
     NSString *userid = [plist getValueforKey:C_UserId];
     NSString *data = [NSString stringWithFormat:@"user_id=%@&question_id=%@&answer_text=%@",userid,_question_id,answertext.text];
-    [[HttpManager alloc] initWithPOSTURL:newAnswerURL delegate:self forPostData:data];
+    data = [data stringByReplacingOccurrencesOfString:@"\n" withString:@"###"];
+    [[HttpManager alloc] initWithPOSTURL:[NSURL URLWithString:newAnswerURL] delegate:self forPostData:data];
 }
 
 - (IBAction)back:(id)sender {

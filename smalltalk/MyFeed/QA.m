@@ -11,6 +11,7 @@
 @implementation QA
 
 @synthesize postText=_postText,userinfo=_userinfo,userid=_userid,count=_count,postid=_postid;
+@synthesize acceptedAnswer=_acceptedAnswer,owner_id=_owner_id,owner_name=_owner_name;
 @synthesize postTitle=_postTitle;
 
 

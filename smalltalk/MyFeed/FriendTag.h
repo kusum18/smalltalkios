@@ -11,13 +11,19 @@
 @interface FriendTag : NSObject
 {
     NSString *_name;
-    NSInteger _userid;
+    NSString *_userid;
+    NSString *_lstatus;
+    NSString *_fstatus;
 }
 
--(id) initWithFriend:(NSString *)_name UserID:(NSInteger)_userid;
+-(id) initWithFriend:(NSString *)_name UserID:(NSString *)_userid;
 
 @property (nonatomic,retain) NSString *name;
 
-@property (nonatomic,readwrite) NSInteger userid;
+@property (nonatomic,readwrite) NSString *userid;
+
+@property (nonatomic,retain) NSString *lstatus;
+
+@property (nonatomic,retain) NSString *fstatus;
 
 @end

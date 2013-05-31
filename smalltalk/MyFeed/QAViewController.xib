@@ -10094,6 +10094,14 @@ AAEAAQABA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">writeButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="238910484"/>
+					</object>
+					<int key="connectionID">89</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">dataSource</string>
 						<reference key="source" ref="571391472"/>
 						<reference key="destination" ref="372490531"/>
@@ -10676,7 +10684,7 @@ AAEAAQABA</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">88</int>
+			<int key="maxID">89</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -10706,10 +10714,21 @@ AAEAAQABA</bytes>
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="AnswerText">UILabel</string>
+						<string key="acceptedAnswer">UIButton</string>
 						<string key="loader">UIActivityIndicatorView</string>
 						<string key="postTable">UITableView</string>
+						<string key="writeButton">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="AnswerText">
+							<string key="name">AnswerText</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="acceptedAnswer">
+							<string key="name">acceptedAnswer</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="loader">
 							<string key="name">loader</string>
 							<string key="candidateClassName">UIActivityIndicatorView</string>
@@ -10717,6 +10736,10 @@ AAEAAQABA</bytes>
 						<object class="IBToOneOutletInfo" key="postTable">
 							<string key="name">postTable</string>
 							<string key="candidateClassName">UITableView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="writeButton">
+							<string key="name">writeButton</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

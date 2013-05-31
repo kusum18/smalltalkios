@@ -8,9 +8,9 @@
 
 #import "MyFeedViewController.h"
 #import "NewPostViewController.h"
-#import "QuestionCell.h"
 #import "QAViewController.h"
 #import "AnswersParser.h"
+#import "QuestionCell.h"
 #import "Constants.h"
 #import "plist.h"
 #import "QA.h"
@@ -36,7 +36,7 @@
         self.tabBarItem.image = [UIImage imageNamed:@"message.png"];
         self.tabBarItem.title=@"Browse Q's";
         self.postsTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 10.0f)] ;
-
+        _feeds = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -44,7 +44,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"%@",[plist getValueforKey:C_UserId]);
     [self fetchAllPosts];
     // Do any additional setup after loading the view from its nib.
 }
@@ -96,9 +95,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     QAViewController *qavc = [[QAViewController alloc] init];
+    qavc.question_id = [[_feeds objectAtIndex:indexPath.row] postid];
     [self.navigationController pushViewController:qavc animated:YES];
-//    AnswersParser *p = [[AnswersParser alloc] init];
-//    [p getAllAnswersForQuestion:1];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -110,7 +108,10 @@
 # pragma mark server api
 
 -(void) fetchAllPosts{
-    NSString *url = [NSString stringWithFormat:@"%@/%@",feedsURL,[plist getValueforKey:C_UserId]];
+    NSString *user_id = [plist getValueforKey:C_UserId];
+    NSInteger startIndex = 0;
+    NSInteger count = 3;
+    NSString *url = [NSString stringWithFormat:@"%@/%@/%d/%d",feedsURL,user_id,startIndex,count];
     [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
 }
 
@@ -121,11 +122,13 @@
     [_feeds removeAllObjects];
     for (NSDictionary *posts in objs) {
         QA *qa = [[QA alloc] init];
-        qa.count = [posts objectForKey:@"count"];
         qa.postText = [posts objectForKey:@"post_text"];
-        qa.userinfo = [posts objectForKey:@"user_info"];
-        qa.postid = [posts objectForKey:@"id"];
+        qa.userinfo = [posts objectForKey:@"user_name"];
+        qa.postid = [posts objectForKey:@"post_id"];
         qa.postTitle = [posts objectForKey:@"post_title"];
+        qa.acceptedAnswer  = [posts objectForKey:@"accepted_answer"];
+        qa.owner_name  = [posts objectForKey:@"owner_name"];
+        qa.owner_id  = [posts objectForKey:@"owner_id"];
         [_feeds addObject:qa];
     }
     [self.feedTable reloadData];

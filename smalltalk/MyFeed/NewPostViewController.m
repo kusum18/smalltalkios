@@ -60,8 +60,9 @@ NSMutableArray *friendsList;
         _friendsList = [_friendsList  stringByAppendingString:tag.name];
         _delimeter = @",";
     }
-    NSString *bodydata = [NSString stringWithFormat:@"%user_id=%@&post_title=%@&post_text=%@&friends_list=%@",
-                                                    [plist getValueforKey:C_UserId],
+    NSString *userId = [plist getValueforKey:C_UserId];
+    NSString *bodydata = [NSString stringWithFormat:@"user_id=%@&post_title=%@&post_text=%@&friends_list=%@",
+                                                    userId,
                                                     postTitleLabel.text,
                                                     postDetail.text,
                                                     _friendsList];

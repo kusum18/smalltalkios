@@ -11,6 +11,6 @@
 @implementation GeoPost
 
 @synthesize postText=_postText,postId=_postId,userId=_userId;
-@synthesize username=_username,longitude=_longitude,latitude=_latitude,likes=_likes;
+@synthesize username=_username,longitude=_longitude,latitude=_latitude,likes=_likes,distance=_distance;
 
 @end

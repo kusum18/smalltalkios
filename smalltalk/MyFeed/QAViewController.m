@@ -11,16 +11,23 @@
 #import "Constants.h"
 #import "AnswersParser.h"
 #import "NewAnswerViewController.h"
+#import "QACell.h"
 
 @interface QAViewController ()
-
+{
+    NSString *question_text;
+    bool isSelected;
+    NSInteger _row;
+    NSInteger accId;
+    bool hasSentAcceptedAnswerReq;
+}
 @property (nonatomic,retain) NSMutableArray *posts;
 
 @end
 
 @implementation QAViewController
 
-@synthesize posts=_posts,postTable,loader;
+@synthesize posts=_posts,postTable,loader,question_id=_question_id;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,15 +35,32 @@
     if (self) {
         // Custom initialization
         _posts = [[NSMutableArray alloc] init];
-        [[HttpManager alloc] initWithURL:[NSURL URLWithString:AnswersURl ] delegate:self];
+        isSelected=NO;
+        hasSentAcceptedAnswerReq = NO;
+        accId=-1;
     }
     return self;
+}
+
+-(void)setQuestion_id:(NSString *)question_id{
+    _question_id = question_id;
+}
+
+-(void) getAllAnswers{
+    NSString *url = [NSString stringWithFormat:@"%@/%@",AnswersURl,_question_id];
+    [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    [self getAllAnswers];
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [self getAllAnswers];
+    hasSentAcceptedAnswerReq = NO;
 }
 
 - (void)didReceiveMemoryWarning
@@ -58,20 +82,28 @@
 // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *simpleTableIdentifier = @"postcell";
-    
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
+    static NSString *simpleTableIdentifier = @"QA";
+    QACell *cell = (QACell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     if (!cell) {
-        
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.textLabel.font = [UIFont systemFontOfSize:15];
-        cell.imageView.image = [UIImage imageNamed:@"search.png"];
-        cell.textLabel.numberOfLines = 0;
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"QACell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+        cell.delegate = self;
+        cell.acceptAnswer.tag = indexPath.row;
+        if((isSelected && _row==indexPath.row ) || accId==[[[_posts objectAtIndex:indexPath.row] postid] intValue]){
+            [cell.acceptAnswer setImage:[UIImage imageNamed:@"check.png"] forState:UIControlStateNormal];
+//            [cell.acceptAnswer]
+        }else{
+            
+        }
+        [cell.answerLabel sizeToFit];
     }
-    QA *tag= [_posts objectAtIndex:indexPath.row];
-    cell.textLabel.text = [tag postText];
+    QA *feed = [_posts objectAtIndex:indexPath.row];
+    [cell.answerLabel setNumberOfLines:0];
+    [cell.answerLabel sizeToFit];
+    [cell.answerLabel setText:[feed postText]];
+    [cell.acceptAnswer setTag:indexPath.row];
+    [cell.usernameLabel setText:[feed userinfo]];
+    cell.acceptAnswer.userInteractionEnabled = !(isSelected || accId!=-1);
     return cell;
 }
 
@@ -80,20 +112,19 @@
     CGSize textSize = [[[_posts objectAtIndex:indexPath.row] postText]  sizeWithFont:[UIFont boldSystemFontOfSize:15]
                         constrainedToSize:CGSizeMake(300, 2000)
                         lineBreakMode:UILineBreakModeWordWrap];
-    return textSize.height+20;
+    return fmax(textSize.height+40, 60);
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *view = [[UIView alloc] init];
-    
+    UIView *view = [[UIView alloc] init]; 
     return view;
 }
 
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return @"Question Shall be here";
+    return question_text;
 }
 
 
@@ -104,28 +135,56 @@
     
 }
 
+-(void)loadIntoPosts:(NSArray *)objs forType:(NSInteger)type{
+    if (type==1){
+        NSDictionary *qs = [objs objectAtIndex:0];
+        question_text = [qs objectForKey:@"question_text"];
+        accId = [[qs objectForKey:@"accepted_answer"] intValue];
+    }else{
+        for (NSDictionary *posts in objs) {
+            QA *qa = [[QA alloc] init];
+            qa.count = [posts objectForKey:@"count"];
+            qa.postText = [posts objectForKey:@"post_text"];
+            qa.userinfo = [posts objectForKey:@"user_info"];
+            qa.postid = [posts objectForKey:@"id"];
+            [_posts addObject:qa];
+        }
+    }
+}
+
 #pragma mark http manager delegate
 - (void) connectionDidFinish:(HttpManager *)theConnection{
-    NSError *error;
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:theConnection.receivedData options:kNilOptions error:&error];
-    NSArray *objs = [dict objectForKey:@"questions"];
-    [_posts removeAllObjects];
-    for (NSDictionary *posts in objs) {
-        QA *qa = [[QA alloc] init];
-        qa.count = [posts objectForKey:@"count"];
-        qa.postText = [posts objectForKey:@"post_text"];
-        qa.userinfo = [posts objectForKey:@"user_info"];
-        qa.postid = [posts objectForKey:@"id"];
-        [_posts addObject:qa];
+    if(hasSentAcceptedAnswerReq){
+        
+    }else{
+        NSError *error;
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:theConnection.receivedData options:kNilOptions error:&error];
+        [_posts removeAllObjects];
+        
+        NSArray *objs = [dict objectForKey:@"question"];
+        [self loadIntoPosts:objs forType:1];
+        
+        objs = [dict objectForKey:@"answers"];
+        [self loadIntoPosts:objs forType:2];
+        
+        [self.postTable setHidden:NO];
+        [self.loader stopAnimating];
+        [self.postTable reloadData];
     }
-    [self.postTable setHidden:NO];
-    [self.loader stopAnimating];
-    [self.postTable reloadData];
 }
 -(void) connectionDidFail:(HttpManager *)theConnection{
     NSLog(@"Error");
 }
-
+-(void) acceptAnswer:(NSInteger)row{
+    
+    NSString *url = [NSString stringWithFormat:@"%@/%@/%@",AcceptedAnswerURL,_question_id,[[_posts objectAtIndex:row] postid]];
+    [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
+    hasSentAcceptedAnswerReq = YES;
+    [self.writeButton setHidden:YES];
+    isSelected = YES;
+    _row = row;
+    [self.postTable reloadData];
+}
 #pragma mark user actions
 
 - (IBAction)goBack:(id)sender {
@@ -134,9 +193,10 @@
 
 - (IBAction)writeAnswer:(id)sender {
     NewAnswerViewController *controller = [[NewAnswerViewController alloc] init];
-    controller.question_id = [[_posts objectAtIndex:0] postid];
-    controller.question_text = [[_posts objectAtIndex:0] postText];
+    controller.question_id = _question_id;
+    controller.question_text = question_text;
     [self.navigationController pushViewController:controller animated:YES];
 }
+
 
 @end

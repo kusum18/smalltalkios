@@ -9,6 +9,7 @@
 #import "QACell.h"
 
 @implementation QACell
+@synthesize answerLabel,acceptAnswer,delegate=_delegate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -26,4 +27,7 @@
     // Configure the view for the selected state
 }
 
+- (IBAction)acceptAnswer:(id)sender {
+    [_delegate acceptAnswer:self.acceptAnswer.tag];
+}
 @end

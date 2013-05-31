@@ -17,6 +17,8 @@
 {
     CLLocationCoordinate2D _location;
     NSMutableArray *_geoposts;
+    CLLocationManager *locationManager;
+    NSMutableArray *_posts;
 
 }
 
@@ -39,6 +41,7 @@
         // Custom initialization
         self.tabBarItem.image = [UIImage imageNamed:@"map-pin.png"];
         self.tabBarItem.title=@"Geo Info";
+        _geoposts = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -47,8 +50,16 @@
 {
     [super viewDidLoad];
     [self locateLatitudeLongitude];
-    [self fetchAllNotes];
     // Do any additional setup after loading the view from its nib.
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+//    [locationManager startUpdatingLocation];
+    [self fetchAllNotes];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [locationManager stopUpdatingLocation];
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,7 +72,7 @@
 #pragma mark TableView data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return [_geoposts count];
 }
 
 
@@ -80,25 +91,18 @@
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
     if (!cell) {
-        
-        //        cell = [[QuestionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-        //        cell = [[QuestionCell alloc] init];
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    [cell.textLabel setText:[_geoposts objectAtIndex:indexPath.row]];
+    [cell.textLabel setText:[[_geoposts objectAtIndex:indexPath.row] postText]];
     cell.textLabel.numberOfLines = 0;
     [cell.textLabel sizeToFit];
-    [cell.textLabel setFont:[UIFont systemFontOfSize:17]];
-    //    [cell.text setText:[NSString stringWithFormat:@"Question %d",indexPath.row]];
-    //    cell.nameLabel.text = [tableData objectAtIndex:indexPath.row];
-    //    cell.thumbnailImageView.image = [UIImage imageNamed:[thumbnails objectAtIndex:indexPath.row]];
-    //    cell.prepTimeLabel.text = [prepTime objectAtIndex:indexPath.row];
+    [cell.textLabel setFont:[UIFont systemFontOfSize:15]];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSString *str = [_geoposts objectAtIndex:indexPath.row];
+    NSString *str = [[_geoposts objectAtIndex:indexPath.row] postText];
     CGSize textSize = [str                       sizeWithFont:[UIFont boldSystemFontOfSize:18]
                        constrainedToSize:CGSizeMake(300, 2000)
                        lineBreakMode:UILineBreakModeWordWrap];
@@ -115,8 +119,6 @@
 #pragma mark Tableview delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    QAViewController *qavc = [[QAViewController alloc] init];
-//    [self.navigationController pushViewController:qavc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -132,16 +134,15 @@
 - (void) connectionDidFinish:(HttpManager *)theConnection{
     NSError *error;
     NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:theConnection.receivedData options:kNilOptions error:&error];
-    NSArray *objs = [dict objectForKey:@"posts"];
+    NSArray *objs = [dict objectForKey:@"notes"];
     [_geoposts removeAllObjects];
     for (NSDictionary *posts in objs) {
         GeoPost *post = [[GeoPost alloc] init];
-        post.likes = [posts objectForKey:@"count"];
-        post.latitude = [posts objectForKey:@"latitude"];
-        post.longitude = [posts objectForKey:@"longitude"];
+        post.likes = [posts objectForKey:@"notes_likes"];
+        post.latitude = [posts objectForKey:@"distance"];
         post.place = [posts objectForKey:@"place"];
-        post.postId = [posts objectForKey:@"post_id"];
-        post.postText = [posts objectForKey:@"posttext"];
+        post.postId = [posts objectForKey:@"notes_id"];
+        post.postText = [posts objectForKey:@"notes_text"];
         [_geoposts addObject:post];
     }
     [self.notesTable reloadData];
@@ -157,7 +158,7 @@
 #pragma mark data loads
 
 -(void) fetchAllNotes{
-    NSString *url = [NSString stringWithFormat:@"%@",fetchAllNotesURL];
+    NSString *url = [NSString stringWithFormat:@"%@/%@/%@",fetchAllNotesURL,@"1",@"2"];
     [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
     
 }
@@ -167,8 +168,6 @@
 }
 
 - (CLLocationCoordinate2D ) getCurrentLocation{
-    CLLocationManager *locationManager;
-    
     if (!locationManager) {
         //        [self initializeLocationManager];
         locationManager = [[CLLocationManager alloc] init];
@@ -182,7 +181,7 @@
     }
     CLLocation *location = [locationManager location];
     CLLocationCoordinate2D coordinate = [location coordinate];
-    [locationManager stopUpdatingLocation];
+//    [locationManager stopUpdatingLocation];
     return coordinate;
     
 }
