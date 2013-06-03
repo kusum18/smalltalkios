@@ -22,6 +22,7 @@
     NSString *_userName;
     NSString *_fbId;
     NSString *_fbAccessToken;
+    TBViewController *homeController;
 }
 
 @synthesize navController;
@@ -35,7 +36,7 @@
       UIRemoteNotificationTypeSound |
       UIRemoteNotificationTypeAlert)];
     [plist checkIfFileExists];
-    TBViewController *homeController = [[TBViewController alloc] init];
+     homeController = [[TBViewController alloc] init];
     navController= [[UINavigationController alloc] initWithRootViewController:homeController];
     [navController setNavigationBarHidden:YES];
     self.window.rootViewController = navController;
@@ -129,14 +130,13 @@
                                  stringByReplacingOccurrencesOfString:@"<" withString:@""]
                                 stringByReplacingOccurrencesOfString:@">" withString:@""]
                                stringByReplacingOccurrencesOfString:@" " withString:@""];
-        //    NSLog(@"%@",pushToken);
         _deviceToken = pushToken;
         [plist writeToPlistsetValue:_deviceToken forKey:C_Device_token];
     }
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
+    [homeController setSelectedIndex:1];
 }
 
 

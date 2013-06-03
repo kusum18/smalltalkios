@@ -1,3 +1,5 @@
+
+
 //
 //  QAViewController.m
 //  smalltalk
@@ -57,7 +59,7 @@ NSMutableArray *friendsList;
     NSString *_delimeter = @"";
     for (FriendTag *tag in friendsList) {
         _friendsList = [_friendsList stringByAppendingString:_delimeter];
-        _friendsList = [_friendsList  stringByAppendingString:tag.name];
+        _friendsList = [_friendsList  stringByAppendingString:tag.userid];
         _delimeter = @",";
     }
     NSString *userId = [plist getValueforKey:C_UserId];
@@ -66,7 +68,6 @@ NSMutableArray *friendsList;
                                                     postTitleLabel.text,
                                                     postDetail.text,
                                                     _friendsList];
-//    [bodydata encodeString];
     [[HttpManager alloc] initWithPOSTURL:[NSURL URLWithString:newQuestionURL] delegate:self forPostData:bodydata];
 }
 - (IBAction)tagFriends:(id)sender {

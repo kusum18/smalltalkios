@@ -27,7 +27,7 @@
 #define C_Device_token @"device_token"
 #define C_UserName @"user_name"
 #define C_UserEmail @"user_mail"
-//#define C_UserName @"user_name"
+#define C_Badge @"0"
 
 
 // Screen 2

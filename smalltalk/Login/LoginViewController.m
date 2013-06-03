@@ -19,6 +19,7 @@
 }
 
 -(void) populateUserDetails;
+-(void) getUserPermissions;
 @end
 
 @implementation LoginViewController
@@ -57,6 +58,7 @@
     switch (state) {
         case FBSessionStateOpen: {
             _fbAccessToken = [[[FBSession activeSession] accessTokenData] accessToken];
+//            [self getUserPermissions];
             [self populateUserDetails];
         }
             break;
@@ -87,13 +89,24 @@
 
 - (void)openSession
 {
-    [FBSession openActiveSessionWithReadPermissions:nil
-                                       allowLoginUI:YES
-                                  completionHandler:
-     ^(FBSession *session,
-       FBSessionState state, NSError *error) {
-         [self sessionStateChanged:session state:state error:error];
-     }];
+[FBSession openActiveSessionWithPublishPermissions: [NSArray arrayWithObjects: @"publish_stream", nil]
+                                   defaultAudience: FBSessionDefaultAudienceEveryone
+                                      allowLoginUI: YES
+ 
+                                 completionHandler: ^(FBSession *session,
+                                                      FBSessionState status,
+                                                      NSError *error)
+ {
+     if (error)
+     {
+         NSLog(@"error");
+     }
+     else
+     {
+         [self sessionStateChanged:session state:status error:error];
+     }
+ }];
+
 }
 
 - (void) setUserDataStructure:(NSDictionary<FBGraphUser> *)user {
@@ -126,11 +139,17 @@
     
 }
 
-
+-(void) getUserPermissions{
+    if (FBSession.activeSession.isOpen) {
+        
+            }
+    [self populateUserDetails];
+}
 
 - (void)populateUserDetails
 {
     if (FBSession.activeSession.isOpen) {
+        
         [[FBRequest requestForMe] startWithCompletionHandler:
          ^(FBRequestConnection *connection,
            NSDictionary<FBGraphUser> *user,

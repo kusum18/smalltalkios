@@ -14,6 +14,7 @@
     NSString *_question_id;
 }
 @property (strong, nonatomic) IBOutlet UIButton *writeButton;
+@property (strong, nonatomic) IBOutlet UILabel *noAnswerLabel;
 
 @property (strong, nonatomic) IBOutlet UIButton *acceptedAnswer;
 @property (strong, nonatomic) IBOutlet UILabel *AnswerText;

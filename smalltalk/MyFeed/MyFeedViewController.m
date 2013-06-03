@@ -130,7 +130,7 @@
 -(void) fetchAllPosts{
     NSString *user_id = [plist getValueforKey:C_UserId];
     NSInteger startIndex = 0;
-    NSInteger count = 3;
+    NSInteger count = 15;
     NSString *url = [NSString stringWithFormat:@"%@/%@/%d/%d",_url,user_id,startIndex,count];
     [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
 }

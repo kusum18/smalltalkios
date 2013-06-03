@@ -76,11 +76,12 @@
     [_notifications removeAllObjects];
     for (NSDictionary *posts in objs) {
         QA *qa = [[QA alloc] init];
-        qa.count = [posts objectForKey:@"count"];
+//        qa.count = [posts objectForKey:@"count"];
         qa.postText = [posts objectForKey:@"post_text"];
-        qa.userinfo = [posts objectForKey:@"user_info"];
-        qa.postid = [posts objectForKey:@"id"];
+        qa.userinfo = [posts objectForKey:@"owner_name"];
+        qa.postid = [posts objectForKey:@"post_id"];
         qa.postTitle = [posts objectForKey:@"post_title"];
+        qa.acceptedAnswer = [posts objectForKey:@"accepted_answer"];
         [_notifications addObject:qa];
     }
     [self.notificationsTable reloadData];
@@ -132,8 +133,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     QAViewController *qavc = [[QAViewController alloc] init];
-    [self.navigationController pushViewController:qavc animated:YES];
     qavc.question_id = [[_notifications objectAtIndex:indexPath.row] postid];
+    [self.navigationController pushViewController:qavc animated:YES];
     //    AnswersParser *p = [[AnswersParser alloc] init];
     //    [p getAllAnswersForQuestion:1];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
