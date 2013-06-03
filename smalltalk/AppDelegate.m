@@ -9,13 +9,20 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "HomeViewController.h"
-#import <FacebookSDK/FacebookSDK.h>
 #import <Parse/Parse.h>
 #import "TBViewController.h"
 #import "plist.h"
+#import "HttpManager.h"
 #import "Constants.h"
 
 @implementation AppDelegate
+{
+    NSString *_deviceToken;
+    NSString *_userId;
+    NSString *_userName;
+    NSString *_fbId;
+    NSString *_fbAccessToken;
+}
 
 @synthesize navController;
 
@@ -27,9 +34,7 @@
      (UIRemoteNotificationTypeBadge |
       UIRemoteNotificationTypeSound |
       UIRemoteNotificationTypeAlert)];
-    [Parse setApplicationId:@"Ai4JS8bvQ0HddJeOBOiCT3JrxLMtQTYynM0nBtkf" clientKey:@"s381ldP6DHTJnlsKqLkUb0HBV74k9Q1wX6hYV6Ee"];
     [plist checkIfFileExists];
-    [plist writeToPlistsetValue:@"1" forKey:C_UserId];
     TBViewController *homeController = [[TBViewController alloc] init];
     navController= [[UINavigationController alloc] initWithRootViewController:homeController];
     [navController setNavigationBarHidden:YES];
@@ -51,9 +56,7 @@
 //                [topViewController dismissModalViewControllerAnimated:YES];
                 
             }
-            [self.navController popViewControllerAnimated:YES];
-//            NSLog(@"%@",[[[FBSession activeSession] accessTokenData] accessToken]);
-//            [self publishStory];
+            _fbAccessToken = [[[FBSession activeSession] accessTokenData] accessToken];
         }
             break;
         case FBSessionStateClosed:
@@ -119,15 +122,17 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
     // Store the deviceToken in the current installation and save it to Parse.
-    NSString *tokenStr = [deviceToken description];
-    NSString *pushToken = [[[tokenStr
-                              stringByReplacingOccurrencesOfString:@"<" withString:@""]
-                             stringByReplacingOccurrencesOfString:@">" withString:@""]
-                            stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSLog(@"%@",pushToken);
-    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-    [currentInstallation setDeviceTokenFromData:deviceToken];
-    [currentInstallation saveInBackground];
+    NSString *dt = [plist getValueforKey:C_Device_token];
+    if(!dt){
+        NSString *tokenStr = [deviceToken description];
+        NSString *pushToken = [[[tokenStr
+                                 stringByReplacingOccurrencesOfString:@"<" withString:@""]
+                                stringByReplacingOccurrencesOfString:@">" withString:@""]
+                               stringByReplacingOccurrencesOfString:@" " withString:@""];
+        //    NSLog(@"%@",pushToken);
+        _deviceToken = pushToken;
+        [plist writeToPlistsetValue:_deviceToken forKey:C_Device_token];
+    }
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {

@@ -8,6 +8,8 @@
 
 #import "ProfileViewController.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "Constants.h"
+#import "plist.h"
 
 @interface ProfileViewController ()
 
@@ -41,4 +43,44 @@
 - (IBAction)unlinkFacebook:(id)sender {
     [FBSession.activeSession closeAndClearTokenInformation];
 }
+
+#pragma mark table data delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+#pragma mark table source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+}
+
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
+    
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 0;
+}
+
+// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
+// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section    // fixed font style. use custom view (UILabel) if you want something different
+{
+    
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
+    
+}
+
 @end

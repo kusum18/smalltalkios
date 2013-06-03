@@ -16,4 +16,8 @@
 
 - (void)openSession;
 
+- (void)populateUserDetails;
+
+- (void) registerUser;
+
 @end

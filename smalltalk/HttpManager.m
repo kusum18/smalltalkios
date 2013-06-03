@@ -20,7 +20,7 @@
 	{
 		
 		self.delegate = theDelegate;
-		
+		NSLog(@"URL Requested %@",theURL);
 		
 		NSMutableURLRequest *theRequest = [NSMutableURLRequest requestWithURL:theURL
 																  cachePolicy:NSURLRequestReloadIgnoringLocalCacheData 

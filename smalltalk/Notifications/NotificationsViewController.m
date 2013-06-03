@@ -9,7 +9,6 @@
 #import "NotificationsViewController.h"
 #import "HomeViewController.h"
 #import "QA.h"
-//#import "QuestionCell.h"
 #import "plist.h"
 #import "Constants.h"
 #import "NotificationsCell.h"
@@ -56,7 +55,8 @@
 
 - (void) fetchAllNotifications
 {
-    NSString *url = [NSString stringWithFormat:@"%@/3/0/5",notificationsURL];
+    NSString *userid = [plist getValueforKey:C_UserId];
+    NSString *url = [NSString stringWithFormat:@"%@/%@/0/5",notificationsURL,userid];
     //    NSString *url = [NSString stringWithFormat:@"%@/%@",notificationsURL,[plist getValueforKey:C_UserId]];
     [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
 }

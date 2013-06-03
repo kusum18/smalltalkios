@@ -366,7 +366,7 @@
 				41A7E3FF174E19FA00F4E796 /* profile */,
 				41A7E3F9174E19CD00F4E796 /* Geopostit */,
 				41A7E3E9174E192900F4E796 /* Notifications */,
-				41A7E3CF174DBF9C00F4E796 /* test */,
+				41A7E3CF174DBF9C00F4E796 /* tab */,
 				41371F9C173DC57F00C90900 /* Browse */,
 				2B47FFD7173BA28F00A243BE /* Home */,
 				2B47FFCD173BA01000A243BE /* AppDelegate */,
@@ -454,7 +454,7 @@
 			path = MyFeed;
 			sourceTree = "<group>";
 		};
-		41A7E3CF174DBF9C00F4E796 /* test */ = {
+		41A7E3CF174DBF9C00F4E796 /* tab */ = {
 			isa = PBXGroup;
 			children = (
 				41A7E3DA174E05B600F4E796 /* TabViewController.h */,
@@ -464,7 +464,7 @@
 				41A7E3E0174E09D500F4E796 /* TBViewController.m */,
 				41A7E3E1174E09D500F4E796 /* TBViewController.xib */,
 			);
-			name = test;
+			name = tab;
 			sourceTree = "<group>";
 		};
 		41A7E3E9174E192900F4E796 /* Notifications */ = {

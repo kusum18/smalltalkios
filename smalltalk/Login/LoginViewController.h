@@ -7,8 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "HttpManager.h"
 
-@interface LoginViewController : ViewController
+@interface LoginViewController : ViewController <HttpManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 

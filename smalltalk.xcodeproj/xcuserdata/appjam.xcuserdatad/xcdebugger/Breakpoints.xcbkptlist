@@ -20,19 +20,6 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "smalltalk/AppDelegate.m"
-         timestampString = "391678449.823856"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "89"
-         endingLineNumber = "89"
-         landmarkName = "-application:openURL:sourceApplication:annotation:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "smalltalk/Geoposti/PostItViewController.m"
          timestampString = "391388526.351878"
          startingColumnNumber = "9223372036854775807"
@@ -85,26 +72,39 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "smalltalk/Notifications/NotificationsViewController.m"
-         timestampString = "391689065.486357"
+         filePath = "smalltalk/Login/LoginViewController.m"
+         timestampString = "391908195.562972"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "107"
-         endingLineNumber = "107"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
+         startingLineNumber = "123"
+         endingLineNumber = "123"
+         landmarkName = "-connectionDidFinish:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "smalltalk/Notifications/NotificationsViewController.m"
-         timestampString = "391689065.486357"
+         filePath = "smalltalk/Login/LoginViewController.m"
+         timestampString = "391908195.562972"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "86"
-         endingLineNumber = "86"
-         landmarkName = "-connectionDidFinish:"
+         startingLineNumber = "114"
+         endingLineNumber = "114"
+         landmarkName = "-setUserDataStructure:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "smalltalk/MyFeed/MentionViewController.m"
+         timestampString = "391907389.259116"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "90"
+         endingLineNumber = "90"
+         landmarkName = "-getfriendsList"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

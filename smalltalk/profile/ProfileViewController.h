@@ -8,8 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ProfileViewController : ViewController
-
+@interface ProfileViewController : ViewController<UITableViewDataSource,UITableViewDelegate>
 
 - (IBAction)unlinkFacebook:(id)sender;
 @end

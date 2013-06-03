@@ -10,27 +10,32 @@
 /* URL Zone */
 #define CBaseURL @"http://localhost/smalltalk"
 #define TestURL @"http://www.google.com"
+#define newUserRegistration @"http://54.214.205.250/smalltalk/index.php/userReg/register"
 
 
 // Screen 1
-#define newAnswerURL @"http://smalltalk.zzl.org/st/index.php/newanswer/answer/"
-#define feedsURL @"http://smalltalk.zzl.org/st/index.php/questions/getquestions"
-#define friendsListURL @"http://smalltalk.zzl.org/st/index.php/fetchfriends/friendlist"
-#define newQuestionURL @"http://smalltalk.zzl.org/st/index.php/insertdb/insert"
-#define AnswersURl @"http://smalltalk.zzl.org/st/index.php/answers/getanswers"
-#define AcceptedAnswerURL @"http://smalltalk.zzl.org/st/index.php/acceptedAnswer/accepted"
-#define selfQuestionsURL @"http://smalltalk.zzl.org/st/index.php/selfquestion/self"
+#define newAnswerURL @"http://54.214.205.250/smalltalk/index.php/newanswer/answer/"
+#define feedsURL @"http://54.214.205.250/smalltalk/index.php/questions/getquestions"
+#define friendsListURL @"http://54.214.205.250/smalltalk/index.php/fetchfriends/friendlist"
+#define newQuestionURL @"http://54.214.205.250/smalltalk/index.php/insertdb/insert"
+#define AnswersURl @"http://54.214.205.250/smalltalk/index.php/answers/getanswers"
+#define AcceptedAnswerURL @"http://54.214.205.250/smalltalk/index.php/acceptedAnswer/accepted"
+#define selfQuestionsURL @"http://54.214.205.250/smalltalk/index.php/selfquestion/self"
 
 
 #define C_UserId @"user_id"
+#define C_Device_token @"device_token"
+#define C_UserName @"user_name"
+#define C_UserEmail @"user_mail"
+//#define C_UserName @"user_name"
 
 
 // Screen 2
-#define notificationsURL @"http://smalltalk.zzl.org/st/index.php/directedquestions/directed"
+#define notificationsURL @"http://54.214.205.250/smalltalk/index.php/directedquestions/directed"
 
 
 // Screen 3
-#define fetchAllNotesURL @"http://smalltalk.zzl.org/st/index.php/postretrieval/retrieval"
-#define NewNotesSendReqUrl @"http://smalltalk.zzl.org/st/index.php/newpostit/postit"
+#define fetchAllNotesURL @"http://54.214.205.250/smalltalk/index.php/postretrieval/retrieval"
+#define NewNotesSendReqUrl @"http://54.214.205.250/smalltalk/index.php/newpostit/postit"
 
 // Screen 4

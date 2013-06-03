@@ -36,6 +36,7 @@
     
     NSString *path = [self getPath];
     NSMutableDictionary* plistDict = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+//    return ([plistDict objectForKey:key]!=nil)?[plistDict objectForKey:key]:@"";
     return [plistDict objectForKey:key];
 }
 

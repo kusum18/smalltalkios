@@ -86,7 +86,8 @@ NSMutableArray *friendsList;
 }
 
 -(void) getfriendsList{
-    NSString *url = [NSString stringWithFormat:@"%@/%@",friendsListURL,[plist getValueforKey:C_UserId]];
+    NSString *uid = [plist getValueforKey:C_UserId];
+    NSString *url = [NSString stringWithFormat:@"%@/%@",friendsListURL,uid];
     [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
 }
 
