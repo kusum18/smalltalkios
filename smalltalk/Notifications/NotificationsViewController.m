@@ -23,7 +23,7 @@
 
 @implementation NotificationsViewController
 
-@synthesize notificationsTable;
+@synthesize notificationsTable,loadingIcon;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -56,9 +56,9 @@
 - (void) fetchAllNotifications
 {
     NSString *userid = [plist getValueforKey:C_UserId];
-    NSString *url = [NSString stringWithFormat:@"%@/%@/0/5",notificationsURL,userid];
-    //    NSString *url = [NSString stringWithFormat:@"%@/%@",notificationsURL,[plist getValueforKey:C_UserId]];
+    NSString *url = [NSString stringWithFormat:@"%@/%@/0/10",notificationsURL,userid];
     [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
+    [self.loadingIcon startAnimating];
 }
 
 - (IBAction)moveAround:(id)sender {
@@ -85,10 +85,14 @@
         [_notifications addObject:qa];
     }
     [self.notificationsTable reloadData];
+    [self.loadingIcon stopAnimating];
 }
 
 -(void) connectionDidFail:(HttpManager *)theConnection{
     NSLog(@"Error: Notifications");
+    [self.loadingIcon stopAnimating];
+    UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Couldn't conenct to server" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [view show];
 }
 
 
@@ -134,10 +138,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     QAViewController *qavc = [[QAViewController alloc] init];
     qavc.question_id = [[_notifications objectAtIndex:indexPath.row] postid];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.navigationController pushViewController:qavc animated:YES];
     //    AnswersParser *p = [[AnswersParser alloc] init];
     //    [p getAllAnswersForQuestion:1];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 

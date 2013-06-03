@@ -29,7 +29,7 @@
 
 @implementation MyFeedViewController
 
-@synthesize postsTableView;
+@synthesize postsTableView,loadingIcon;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -106,8 +106,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     QAViewController *qavc = [[QAViewController alloc] init];
     qavc.question_id = [[_feeds objectAtIndex:indexPath.row] postid];
-    [self.navigationController pushViewController:qavc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.navigationController pushViewController:qavc animated:YES];
 }
 
 - (IBAction)WriteQuestion:(id)sender {
@@ -133,6 +133,7 @@
     NSInteger count = 15;
     NSString *url = [NSString stringWithFormat:@"%@/%@/%d/%d",_url,user_id,startIndex,count];
     [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
+    [self.loadingIcon startAnimating];
 }
 
 - (void) connectionDidFinish:(HttpManager *)theConnection{
@@ -153,9 +154,12 @@
         [_feeds addObject:qa];
     }
     [self.feedTable reloadData];
+    [self.loadingIcon stopAnimating];
 }
 -(void) connectionDidFail:(HttpManager *)theConnection{
-    
+    [self.loadingIcon stopAnimating];
+    UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Couldn't conenct to server" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [view show];
 }
 
 @end

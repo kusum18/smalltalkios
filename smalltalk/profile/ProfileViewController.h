@@ -9,6 +9,7 @@
 #import "ViewController.h"
 
 @interface ProfileViewController : ViewController<UITableViewDataSource,UITableViewDelegate>
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIcon;
 
 - (IBAction)unlinkFacebook:(id)sender;
 @end

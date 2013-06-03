@@ -16,5 +16,6 @@
 - (IBAction)toggleChange:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *toggle;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIcon;
 @property (weak, nonatomic) IBOutlet UITableView *feedTable;
 @end

@@ -49,6 +49,7 @@
 -(void) getAllAnswers{
     NSString *url = [NSString stringWithFormat:@"%@/%@",AnswersURl,_question_id];
     [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
+    [self.loader startAnimating];
 }
 
 - (void)viewDidLoad
@@ -170,10 +171,19 @@
         [self.postTable setHidden:NO];
         [self.loader stopAnimating];
         [self.postTable reloadData];
+        [self.loader stopAnimating];
+        if([_posts count]==0){
+            [self.noAnswerLabel setHidden:NO];
+        }else{
+            [self.noAnswerLabel setHidden:YES];
+        }
     }
 }
 -(void) connectionDidFail:(HttpManager *)theConnection{
     NSLog(@"Error");
+    [self.loader stopAnimating];
+    UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Couldn't conenct to server" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [view show];
 }
 -(void) acceptAnswer:(NSInteger)row{
     

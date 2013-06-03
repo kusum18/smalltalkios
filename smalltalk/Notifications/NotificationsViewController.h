@@ -10,6 +10,7 @@
 #import "HttpManager.h"
 
 @interface NotificationsViewController : ViewController<UITableViewDataSource, UITableViewDelegate, HttpManagerDelegate>
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIcon;
 
 @property (strong, nonatomic) IBOutlet UITableView *notificationsTable;
 @end

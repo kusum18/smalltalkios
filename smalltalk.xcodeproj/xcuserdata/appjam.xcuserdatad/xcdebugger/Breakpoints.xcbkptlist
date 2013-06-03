@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "smalltalk/Notifications/NotificationsViewController.m"
-         timestampString = "391920848.117129"
+         timestampString = "391986327.392076"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "137"
-         endingLineNumber = "137"
+         startingLineNumber = "142"
+         endingLineNumber = "142"
          landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,7 +99,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "smalltalk/MyFeed/QAViewController.m"
-         timestampString = "391921255.390278"
+         timestampString = "391986208.717111"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "51"
@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "smalltalk/MyFeed/QAViewController.m"
-         timestampString = "391921378.944588"
+         timestampString = "391987175.706487"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "196"
-         endingLineNumber = "196"
+         startingLineNumber = "206"
+         endingLineNumber = "206"
          landmarkName = "-writeAnswer:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "smalltalk/MyFeed/QAViewController.m"
-         timestampString = "391921477.646007"
+         timestampString = "391986208.717111"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "157"
-         endingLineNumber = "157"
+         startingLineNumber = "158"
+         endingLineNumber = "158"
          landmarkName = "-connectionDidFinish:"
          landmarkType = "5">
       </FileBreakpoint>

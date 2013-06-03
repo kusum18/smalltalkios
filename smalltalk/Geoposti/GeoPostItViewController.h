@@ -12,5 +12,6 @@
 @interface GeoPostItViewController : ViewController<UITableViewDataSource,UITableViewDelegate,HttpManagerDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *notesTable;
 
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIcon;
 - (IBAction)write:(id)sender;
 @end

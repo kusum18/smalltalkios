@@ -32,7 +32,7 @@
 
 @implementation GeoPostItViewController
 
-@synthesize notesTable;
+@synthesize notesTable,loadingIcon;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -146,12 +146,14 @@
         [_geoposts addObject:post];
     }
     [self.notesTable reloadData];
+    [self.loadingIcon stopAnimating];
 
 }
 
 -(void) connectionDidFail:(HttpManager *)theConnection{
-
-    
+    [self.loadingIcon stopAnimating];
+    UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Couldn't conenct to server" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [view show];
 }
 
 
@@ -160,6 +162,7 @@
 -(void) fetchAllNotes{
     NSString *url = [NSString stringWithFormat:@"%@/%@/%@",fetchAllNotesURL,@"1",@"2"];
     [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
+    [self.loadingIcon startAnimating];
     
 }
 
