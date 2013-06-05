@@ -14,11 +14,13 @@
 - (IBAction)moveBack:(id)sender;
 
 - (IBAction)pushMentions:(id)sender;
+- (IBAction)addCategories:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UITableView *taggedFriendsTable;
 @property (strong, nonatomic) IBOutlet UILabel *nofriendsLabel;
 @property (strong, nonatomic) IBOutlet UIButton *phoneBookLabel;
 - (IBAction)tagFriends:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *categories;
 
 @property (strong, nonatomic) IBOutlet UITextView *postDetail;
 @property (strong, nonatomic) IBOutlet UITextField *postTitleLabel;

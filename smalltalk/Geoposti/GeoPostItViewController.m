@@ -152,7 +152,7 @@
 
 -(void) connectionDidFail:(HttpManager *)theConnection{
     [self.loadingIcon stopAnimating];
-    UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Couldn't conenct to server" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Couldn't connect to server" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [view show];
 }
 

@@ -105,7 +105,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     QAViewController *qavc = [[QAViewController alloc] init];
-    qavc.question_id = [[_feeds objectAtIndex:indexPath.row] postid];
+    qavc.question_id = [_feeds objectAtIndex:indexPath.row];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.navigationController pushViewController:qavc animated:YES];
 }
@@ -134,6 +134,7 @@
     NSString *url = [NSString stringWithFormat:@"%@/%@/%d/%d",_url,user_id,startIndex,count];
     [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
     [self.loadingIcon startAnimating];
+    [self.toggle setEnabled:NO];
 }
 
 - (void) connectionDidFinish:(HttpManager *)theConnection{
@@ -155,11 +156,13 @@
     }
     [self.feedTable reloadData];
     [self.loadingIcon stopAnimating];
+    [self.toggle setEnabled:YES];
 }
 -(void) connectionDidFail:(HttpManager *)theConnection{
     [self.loadingIcon stopAnimating];
     UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Couldn't conenct to server" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [view show];
+    [self.toggle setEnabled:YES];
 }
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "HttpManager.h"
 
-@interface ProfileViewController : ViewController<UITableViewDataSource,UITableViewDelegate>
+@interface ProfileViewController : ViewController<UITableViewDataSource,UITableViewDelegate,HttpManagerDelegate>
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *loadingIcon;
 
 - (IBAction)unlinkFacebook:(id)sender;

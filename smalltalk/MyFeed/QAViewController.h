@@ -8,17 +8,21 @@
 
 #import "ViewController.h"
 #import "HttpManager.h"
+#import "QA.h"
 
 @interface QAViewController : ViewController<UITableViewDelegate,UITableViewDataSource,HttpManagerDelegate>
 {
-    NSString *_question_id;
+    QA *_question_id;
+    bool isSelected;
 }
+
+
 @property (strong, nonatomic) IBOutlet UIButton *writeButton;
 @property (strong, nonatomic) IBOutlet UILabel *noAnswerLabel;
 
 @property (strong, nonatomic) IBOutlet UIButton *acceptedAnswer;
 @property (strong, nonatomic) IBOutlet UILabel *AnswerText;
-@property (nonatomic,retain) NSString *question_id;
+@property (nonatomic,retain) QA *question_id;
 @property (strong, nonatomic) IBOutlet UITableView *postTable;
 
 - (IBAction)goBack:(id)sender;

@@ -137,7 +137,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     QAViewController *qavc = [[QAViewController alloc] init];
-    qavc.question_id = [[_notifications objectAtIndex:indexPath.row] postid];
+    qavc.question_id = [_notifications objectAtIndex:indexPath.row];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.navigationController pushViewController:qavc animated:YES];
     //    AnswersParser *p = [[AnswersParser alloc] init];

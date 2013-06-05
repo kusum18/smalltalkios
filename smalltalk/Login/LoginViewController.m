@@ -123,7 +123,8 @@
                   fbid,
                   _fbAccessToken,
                   _deviceToken]];
-    [plist writeToPlistsetValue:user.name forKey:C_UserName];
+    [plist writeToPlistsetValue:user.name forKey:C_Name];
+    [plist writeToPlistsetValue:user.birthday forKey:C_Email];
     [[HttpManager alloc] initWithURL:url delegate:self];
 }
 

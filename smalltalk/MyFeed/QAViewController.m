@@ -7,16 +7,15 @@
 //
 
 #import "QAViewController.h"
-#import "QA.h"
 #import "Constants.h"
 #import "AnswersParser.h"
 #import "NewAnswerViewController.h"
 #import "QACell.h"
-
+#import "plist.h"
 @interface QAViewController ()
 {
     NSString *question_text;
-    bool isSelected;
+
     NSInteger _row;
     NSInteger accId;
     bool hasSentAcceptedAnswerReq;
@@ -42,12 +41,12 @@
     return self;
 }
 
--(void)setQuestion_id:(NSString *)question_id{
+-(void)setQuestion_id:(QA *)question_id{
     _question_id = question_id;
 }
 
 -(void) getAllAnswers{
-    NSString *url = [NSString stringWithFormat:@"%@/%@",AnswersURl,_question_id];
+    NSString *url = [NSString stringWithFormat:@"%@/%@",AnswersURl,_question_id.postid];
     [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
     [self.loader startAnimating];
 }
@@ -61,6 +60,11 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [self getAllAnswers];
+    if([_question_id.acceptedAnswer caseInsensitiveCompare:@"-1"]==NSOrderedSame){
+        [self.writeButton setHidden:NO];
+    }else{
+        [self.writeButton setHidden:YES];
+    }
     hasSentAcceptedAnswerReq = NO;
 }
 
@@ -90,13 +94,20 @@
         cell = [nib objectAtIndex:0];
         cell.delegate = self;
         cell.acceptAnswer.tag = indexPath.row;
-        if((isSelected && _row==indexPath.row ) || accId==[[[_posts objectAtIndex:indexPath.row] postid] intValue]){
-            [cell.acceptAnswer setImage:[UIImage imageNamed:@"check.png"] forState:UIControlStateNormal];
-//            [cell.acceptAnswer]
-        }else{
-            
-        }
         [cell.answerLabel sizeToFit];
+    }
+    if([_question_id.owner_id caseInsensitiveCompare:[plist getValueforKey:C_UserId] ]==NSOrderedSame){
+        [cell.acceptAnswer setHidden:NO];
+    }else{
+        [cell.acceptAnswer setHidden:YES];
+    }
+    
+    if((isSelected && _row==indexPath.row ) || accId==[[[_posts objectAtIndex:indexPath.row] postid] intValue]){
+        [cell.acceptAnswer setHidden:NO];
+        [cell.acceptAnswer setImage:[UIImage imageNamed:@"check.png"] forState:UIControlStateNormal];
+        //            [cell.acceptAnswer]
+    }else{
+        
     }
     QA *feed = [_posts objectAtIndex:indexPath.row];
     [cell.answerLabel setNumberOfLines:0];
@@ -182,12 +193,12 @@
 -(void) connectionDidFail:(HttpManager *)theConnection{
     NSLog(@"Error");
     [self.loader stopAnimating];
-    UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Couldn't conenct to server" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    UIAlertView *view = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Couldn't connect to server" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [view show];
 }
 -(void) acceptAnswer:(NSInteger)row{
     
-    NSString *url = [NSString stringWithFormat:@"%@/%@/%@",AcceptedAnswerURL,_question_id,[[_posts objectAtIndex:row] postid]];
+    NSString *url = [NSString stringWithFormat:@"%@/%@/%@",AcceptedAnswerURL,_question_id.postid,[[_posts objectAtIndex:row] postid]];
     [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
     hasSentAcceptedAnswerReq = YES;
     [self.writeButton setHidden:YES];
@@ -203,8 +214,8 @@
 
 - (IBAction)writeAnswer:(id)sender {
     NewAnswerViewController *controller = [[NewAnswerViewController alloc] init];
-    controller.question_id = _question_id;
-    controller.question_text = question_text;
+    controller.question_id = _question_id.postid;
+    controller.question_text = _question_id.postText;
     [self.navigationController pushViewController:controller animated:YES];
 }
 

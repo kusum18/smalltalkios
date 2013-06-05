@@ -70,6 +70,13 @@ NSMutableArray *friendsList;
                                                     _friendsList];
     [[HttpManager alloc] initWithPOSTURL:[NSURL URLWithString:newQuestionURL] delegate:self forPostData:bodydata];
 }
+
+- (IBAction)addCategories:(id)sender {
+    MentionViewController *mention = [[MentionViewController alloc] init];
+    mention.delegate = self;
+    [self presentViewController:mention animated:YES completion:Nil];
+
+}
 - (IBAction)tagFriends:(id)sender {
     MentionViewController *mention = [[MentionViewController alloc] init];
     mention.delegate = self;

@@ -26,8 +26,13 @@
 #define C_UserId @"user_id"
 #define C_Device_token @"device_token"
 #define C_UserName @"user_name"
-#define C_UserEmail @"user_mail"
 #define C_Badge @"0"
+
+#define C_Name @"name"
+#define C_Email @"mail"
+#define C_Subscriptions @"subscriptions"
+#define C_hasFacebook @"0"
+#define C_hasLinkedIn @"0"
 
 
 // Screen 2
@@ -39,3 +44,4 @@
 #define NewNotesSendReqUrl @"http://54.214.205.250/smalltalk/index.php/newpostit/postit"
 
 // Screen 4
+#define userSubscription @"http://54.214.205.250/smalltalk/index.php/subscription/subscribe/"
