@@ -9,12 +9,14 @@
 #import "ViewController.h"
 #import "FriendTag.h"
 
-@interface NewPostViewController : ViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UITextViewDelegate>
+@interface NewPostViewController : ViewController<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate,UITextViewDelegate,UIPopoverControllerDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *goBack;
 - (IBAction)moveBack:(id)sender;
 
 - (IBAction)pushMentions:(id)sender;
 - (IBAction)addCategories:(id)sender;
+
+-(void) setCategories:(NSMutableArray *)categories;
 
 @property (strong, nonatomic) IBOutlet UITableView *taggedFriendsTable;
 @property (strong, nonatomic) IBOutlet UILabel *nofriendsLabel;

@@ -58,6 +58,8 @@
 		41371FA0173DC59900C90900 /* MyFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41371F9E173DC59900C90900 /* MyFeedViewController.m */; };
 		41371FA1173DC59900C90900 /* MyFeedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41371F9F173DC59900C90900 /* MyFeedViewController.xib */; };
 		413D9E4D175F335700FB6200 /* sign_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 413D9E4C175F335700FB6200 /* sign_out.png */; };
+		418832A61762097E00A84AAF /* CategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 418832A41762097E00A84AAF /* CategoriesViewController.m */; };
+		418832A71762097E00A84AAF /* CategoriesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 418832A51762097E00A84AAF /* CategoriesViewController.xib */; };
 		418F7F391755C5DD005387E7 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 418F7F381755C5DD005387E7 /* check.png */; };
 		418F7F3D1755EDCD005387E7 /* uncheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 418F7F3C1755EDCD005387E7 /* uncheck.png */; };
 		419BDB1B175FD1AA00CD1591 /* category_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 419BDB1A175FD1AA00CD1591 /* category_32.png */; };
@@ -174,6 +176,9 @@
 		41371F9E173DC59900C90900 /* MyFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFeedViewController.m; sourceTree = "<group>"; };
 		41371F9F173DC59900C90900 /* MyFeedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFeedViewController.xib; sourceTree = "<group>"; };
 		413D9E4C175F335700FB6200 /* sign_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sign_out.png; sourceTree = "<group>"; };
+		418832A31762097E00A84AAF /* CategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoriesViewController.h; path = NewPost/CategoriesViewController.h; sourceTree = "<group>"; };
+		418832A41762097E00A84AAF /* CategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoriesViewController.m; path = NewPost/CategoriesViewController.m; sourceTree = "<group>"; };
+		418832A51762097E00A84AAF /* CategoriesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CategoriesViewController.xib; path = NewPost/CategoriesViewController.xib; sourceTree = "<group>"; };
 		418F7F381755C5DD005387E7 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		418F7F3C1755EDCD005387E7 /* uncheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uncheck.png; sourceTree = "<group>"; };
 		419BDB1A175FD1AA00CD1591 /* category_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = category_32.png; sourceTree = "<group>"; };
@@ -566,6 +571,9 @@
 				419BDB1C175FD2B700CD1591 /* CategoryViewController.h */,
 				419BDB1D175FD2B700CD1591 /* CategoryViewController.m */,
 				419BDB1E175FD2B700CD1591 /* CategoryViewController.xib */,
+				418832A31762097E00A84AAF /* CategoriesViewController.h */,
+				418832A41762097E00A84AAF /* CategoriesViewController.m */,
+				418832A51762097E00A84AAF /* CategoriesViewController.xib */,
 			);
 			name = "New Post";
 			sourceTree = "<group>";
@@ -687,6 +695,7 @@
 				413D9E4D175F335700FB6200 /* sign_out.png in Resources */,
 				419BDB1B175FD1AA00CD1591 /* category_32.png in Resources */,
 				419BDB20175FD2B700CD1591 /* CategoryViewController.xib in Resources */,
+				418832A71762097E00A84AAF /* CategoriesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -728,6 +737,7 @@
 				41126A86175899EF0094CC7E /* NSString+NSString_HTML.m in Sources */,
 				41126A891758AF770094CC7E /* NotificationsCell.m in Sources */,
 				419BDB1F175FD2B700CD1591 /* CategoryViewController.m in Sources */,
+				418832A61762097E00A84AAF /* CategoriesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

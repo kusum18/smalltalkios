@@ -7,52 +7,26 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "smalltalk/Login/LoginViewController.m"
-         timestampString = "392117817.364542"
+         filePath = "smalltalk/MyFeed/NewPostViewController.m"
+         timestampString = "392344016.858529"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "126"
-         endingLineNumber = "126"
-         landmarkName = "-setUserDataStructure:"
+         startingLineNumber = "84"
+         endingLineNumber = "84"
+         landmarkName = "-addCategories:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "smalltalk/MyFeed/QAViewController.m"
-         timestampString = "392152794.044178"
+         filePath = "smalltalk/MyFeed/NewPost/CategoriesViewController.m"
+         timestampString = "392344016.858529"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "202"
-         endingLineNumber = "202"
-         landmarkName = "-acceptAnswer:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "smalltalk/MyFeed/QAViewController.m"
-         timestampString = "392152889.265696"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "45"
-         endingLineNumber = "45"
-         landmarkName = "-setQuestion_id:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "smalltalk/MyFeed/MyFeedViewController.m"
-         timestampString = "392152944.18842"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "146"
-         endingLineNumber = "146"
-         landmarkName = "-connectionDidFinish:"
+         startingLineNumber = "83"
+         endingLineNumber = "83"
+         landmarkName = "-tableView:didSelectRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
