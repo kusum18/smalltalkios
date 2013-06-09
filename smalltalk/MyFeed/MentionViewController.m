@@ -22,10 +22,22 @@
 
 @implementation MentionViewController
 
-@synthesize  tagged=_tagged,friendsList=_friendsList,delegate;
+@synthesize delegate,qid;
+
+@synthesize  tagged=_tagged,friendsList=_friendsList;
 NSMutableArray *friendsList;
+NSString *_url;
 
 @synthesize userlistTable;
+
+-(id)initWithURL:(NSString *)type{
+    self = [super init];
+    
+    if (self) {
+        _url = type;
+    }
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -87,7 +99,13 @@ NSMutableArray *friendsList;
 
 -(void) getfriendsList{
     NSString *uid = [plist getValueforKey:C_UserId];
-    NSString *url = [NSString stringWithFormat:@"%@/%@",friendsListURL,uid];
+    NSString *urlstring,*url;
+    if(_url){
+        url = [NSString stringWithFormat:@"%@/%@/%@",selectedfriendsListURL,uid,qid];
+    }else{
+        url = [NSString stringWithFormat:@"%@/%@",friendsListURL,uid];
+    }
+    
     [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
 }
 

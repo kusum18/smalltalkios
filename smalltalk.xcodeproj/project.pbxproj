@@ -63,8 +63,6 @@
 		418F7F391755C5DD005387E7 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 418F7F381755C5DD005387E7 /* check.png */; };
 		418F7F3D1755EDCD005387E7 /* uncheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 418F7F3C1755EDCD005387E7 /* uncheck.png */; };
 		419BDB1B175FD1AA00CD1591 /* category_32.png in Resources */ = {isa = PBXBuildFile; fileRef = 419BDB1A175FD1AA00CD1591 /* category_32.png */; };
-		419BDB1F175FD2B700CD1591 /* CategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 419BDB1D175FD2B700CD1591 /* CategoryViewController.m */; };
-		419BDB20175FD2B700CD1591 /* CategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 419BDB1E175FD2B700CD1591 /* CategoryViewController.xib */; };
 		41A7E3DD174E05B600F4E796 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A7E3DB174E05B600F4E796 /* TabViewController.m */; };
 		41A7E3DE174E05B600F4E796 /* TabViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41A7E3DC174E05B600F4E796 /* TabViewController.xib */; };
 		41A7E3E2174E09D500F4E796 /* TBViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41A7E3E0174E09D500F4E796 /* TBViewController.m */; };
@@ -182,9 +180,6 @@
 		418F7F381755C5DD005387E7 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		418F7F3C1755EDCD005387E7 /* uncheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uncheck.png; sourceTree = "<group>"; };
 		419BDB1A175FD1AA00CD1591 /* category_32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = category_32.png; sourceTree = "<group>"; };
-		419BDB1C175FD2B700CD1591 /* CategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryViewController.h; sourceTree = "<group>"; };
-		419BDB1D175FD2B700CD1591 /* CategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryViewController.m; sourceTree = "<group>"; };
-		419BDB1E175FD2B700CD1591 /* CategoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryViewController.xib; sourceTree = "<group>"; };
 		41A7E3DA174E05B600F4E796 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TabViewController.h; path = test/TabViewController.h; sourceTree = "<group>"; };
 		41A7E3DB174E05B600F4E796 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TabViewController.m; path = test/TabViewController.m; sourceTree = "<group>"; };
 		41A7E3DC174E05B600F4E796 /* TabViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TabViewController.xib; path = test/TabViewController.xib; sourceTree = "<group>"; };
@@ -568,9 +563,6 @@
 				41C48A9A17500CDC004BC6CA /* MentionViewController.h */,
 				41C48A9B17500CDC004BC6CA /* MentionViewController.m */,
 				41C48A9C17500CDC004BC6CA /* MentionViewController.xib */,
-				419BDB1C175FD2B700CD1591 /* CategoryViewController.h */,
-				419BDB1D175FD2B700CD1591 /* CategoryViewController.m */,
-				419BDB1E175FD2B700CD1591 /* CategoryViewController.xib */,
 				418832A31762097E00A84AAF /* CategoriesViewController.h */,
 				418832A41762097E00A84AAF /* CategoriesViewController.m */,
 				418832A51762097E00A84AAF /* CategoriesViewController.xib */,
@@ -694,7 +686,6 @@
 				41126A8B1758AF980094CC7E /* NotificationsCell.xib in Resources */,
 				413D9E4D175F335700FB6200 /* sign_out.png in Resources */,
 				419BDB1B175FD1AA00CD1591 /* category_32.png in Resources */,
-				419BDB20175FD2B700CD1591 /* CategoryViewController.xib in Resources */,
 				418832A71762097E00A84AAF /* CategoriesViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -736,7 +727,6 @@
 				41C48B3C175409A1004BC6CA /* GeoPost.m in Sources */,
 				41126A86175899EF0094CC7E /* NSString+NSString_HTML.m in Sources */,
 				41126A891758AF770094CC7E /* NotificationsCell.m in Sources */,
-				419BDB1F175FD2B700CD1591 /* CategoryViewController.m in Sources */,
 				418832A61762097E00A84AAF /* CategoriesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

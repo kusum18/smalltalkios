@@ -17,10 +17,12 @@
 #define newAnswerURL @"http://54.214.205.250/smalltalk/index.php/newanswer/answer/"
 #define feedsURL @"http://54.214.205.250/smalltalk/index.php/questions/getquestions"
 #define friendsListURL @"http://54.214.205.250/smalltalk/index.php/fetchfriends/friendlist"
+#define selectedfriendsListURL @"http://54.214.205.250/smalltalk/index.php/fetchfriends/friendlist"
 #define newQuestionURL @"http://54.214.205.250/smalltalk/index.php/insertdb/insert"
 #define AnswersURl @"http://54.214.205.250/smalltalk/index.php/answers/getanswers"
 #define AcceptedAnswerURL @"http://54.214.205.250/smalltalk/index.php/acceptedAnswer/accepted"
 #define selfQuestionsURL @"http://54.214.205.250/smalltalk/index.php/selfquestion/self"
+#define peerForwardingURL @""
 
 
 #define C_UserId @"user_id"

@@ -15,6 +15,9 @@
 @property (strong, nonatomic) IBOutlet UITableView *userlistTable;
 
 @property (nonatomic,retain) id delegate;
+
+@property (nonatomic,retain) NSString *qid;
+
 - (IBAction)pop:(id)sender;
 - (IBAction)back:(id)sender;
 

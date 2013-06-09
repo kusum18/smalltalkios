@@ -12,6 +12,7 @@
 #import "NewAnswerViewController.h"
 #import "QACell.h"
 #import "plist.h"
+
 @interface QAViewController ()
 {
     NSString *question_text;
@@ -19,6 +20,7 @@
     NSInteger _row;
     NSInteger accId;
     bool hasSentAcceptedAnswerReq;
+    bool forwardFriendRequest;
 }
 @property (nonatomic,retain) NSMutableArray *posts;
 
@@ -167,8 +169,11 @@
 #pragma mark http manager delegate
 - (void) connectionDidFinish:(HttpManager *)theConnection{
     if(hasSentAcceptedAnswerReq){
-        
-    }else{
+        hasSentAcceptedAnswerReq = NO;
+    }else if(forwardFriendRequest){
+        forwardFriendRequest = NO;
+    }
+    else{
         NSError *error;
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:theConnection.receivedData options:kNilOptions error:&error];
         [_posts removeAllObjects];
@@ -217,6 +222,23 @@
     controller.question_id = _question_id.postid;
     controller.question_text = _question_id.postText;
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+
+- (IBAction)tagFriends:(id)sender {
+    MentionViewController *viewvc = [[MentionViewController alloc] init];
+    viewvc.qid = _question_id.postid;
+    [self.navigationController pushViewController:viewvc animated:YES];
+}
+
+-(void) addFriend:(FriendTag *)tag{
+    NSString *urlstring = [NSString stringWithFormat:@"%@/%@/%@/%@",
+                                                    peerForwardingURL,
+                                                    _question_id.postid,
+                                                    [plist getValueforKey:C_UserId],
+                                                    tag.userid];
+    [[HttpManager alloc] initWithURL:[NSURL URLWithString:urlstring] delegate:self];
+    forwardFriendRequest = YES;
 }
 
 

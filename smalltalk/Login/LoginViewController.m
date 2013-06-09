@@ -39,6 +39,32 @@
     [self.spinner stopAnimating];
 }
 
+- (IBAction)linkedInConnect:(id)sender {
+    
+    UIWebView *view = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 300, 400)];
+    NSString *fullURL = @"http://54.214.205.250/smalltalk/index.php/loginlinkedin";
+    NSURL *url = [NSURL URLWithString:fullURL];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [view loadRequest:requestObj];
+    [view sizeToFit];
+    [view setDelegate:self];
+//    [view su];
+    [self.view addSubview:view];
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+//    NSString *html = [webView g];
+    
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView{
+    NSString *html = [webView stringByEvaluatingJavaScriptFromString: @"document.body.innerHTML"];
+    NSLog(@"%@",html);
+    
+    if ([html rangeOfString:@"\"access_token\""].location!=NSNotFound) {
+        [webView setHidden:YES];
+    }
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];

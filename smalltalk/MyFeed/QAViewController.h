@@ -9,13 +9,16 @@
 #import "ViewController.h"
 #import "HttpManager.h"
 #import "QA.h"
+#import "MentionViewController.h"
 
 @interface QAViewController : ViewController<UITableViewDelegate,UITableViewDataSource,HttpManagerDelegate>
 {
     QA *_question_id;
     bool isSelected;
 }
+- (IBAction)tagFriends:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UIButton *tagFriends;
 
 @property (strong, nonatomic) IBOutlet UIButton *writeButton;
 @property (strong, nonatomic) IBOutlet UILabel *noAnswerLabel;

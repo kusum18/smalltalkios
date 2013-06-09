@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "HttpManager.h"
 
-@interface LoginViewController : ViewController <HttpManagerDelegate>
+@interface LoginViewController : ViewController <HttpManagerDelegate,UIWebViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
@@ -18,5 +18,6 @@
 - (void)openSession;
 
 - (void)loginFailed;
+- (IBAction)linkedInConnect:(id)sender;
 
 @end
