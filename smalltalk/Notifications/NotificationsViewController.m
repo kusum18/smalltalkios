@@ -13,6 +13,7 @@
 #import "Constants.h"
 #import "NotificationsCell.h"
 #import "QAViewController.h"
+#import "QuestionCell.h"
 
 @interface NotificationsViewController ()
 {
@@ -105,32 +106,44 @@
 
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
 // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *simpleTableIdentifier = @"NotificationsCell";
-    
-    NotificationsCell *cell = (NotificationsCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (!cell) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"NotificationsCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
-    }
-    [cell.postText setText:[[_notifications objectAtIndex:indexPath.row] postText]];
-    [cell.postText setNumberOfLines:0];
-    [cell.postText sizeToFit];
-//    [cell.titleLabel setText:[[_notifications objectAtIndex:indexPath.row] postTitle]];
-    return cell;
+-(void) setFrame:(UILabel *)_label{
+    CGRect frame = _label.frame;
+    frame.size.width = 276;
+    _label.frame = frame;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 78;
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *simpleTableIdentifier = @"QuestionCell";
+    
+    QuestionCell *cell = (QuestionCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    QA *qa = [_notifications objectAtIndex:indexPath.row];
+    if (!cell) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"QuestionCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+        [cell.titleLabel setFont:[UIFont boldSystemFontOfSize:12]];
+    }
+    [cell.titleLabel setText:[NSString stringWithFormat:@"Posted by: %@",[qa userinfo]]];
+    [cell.postme setText:[qa postText]];
+    [cell.postme setNumberOfLines:0];
+    [self setFrame:cell.postme];
+    [cell.postme sizeToFit];
+    [cell.postme setLineBreakMode:NSLineBreakByWordWrapping];
+    return cell;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     UIView *view = [[UIView alloc] init];
-    
     return view;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *str = [[_notifications objectAtIndex:indexPath.row] postText];
+    CGSize textSize = [str sizeWithFont:[UIFont systemFontOfSize:18]
+                      constrainedToSize:CGSizeMake(200, 2000)
+                      lineBreakMode:NSLineBreakByWordWrapping];
+    return MAX(textSize.height+20,78);
 }
 
 #pragma mark Tableview delegate

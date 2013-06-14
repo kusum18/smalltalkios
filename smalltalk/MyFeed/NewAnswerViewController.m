@@ -31,6 +31,15 @@
 {
     [super viewDidLoad];
     [self.questionLabel setText:_question_text];
+    [self.questionLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    [self.questionLabel setNumberOfLines:0];
+    [self.questionLabel sizeToFit];
+    CGSize expectedLabelSize = [_question_text sizeWithFont:[UIFont systemFontOfSize:18]
+                                constrainedToSize:CGRectMake(0, 0, 300, 2000).size
+                                    lineBreakMode:UILineBreakModeWordWrap];
+    CGRect frame = self.questionLabel.frame;
+    frame.size.height = expectedLabelSize.height;
+    
     // Do any additional setup after loading the view from its nib.
 }
 

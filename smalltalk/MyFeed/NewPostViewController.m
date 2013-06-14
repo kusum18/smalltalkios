@@ -65,11 +65,12 @@ NSMutableArray *friendsList,*categoryList;
     }
     
     _delimeter = @"";
-    for (NSNumber *tag in categoryList) {
-        _catList = [_catList stringByAppendingString:_delimeter];
-        _catList = [_catList  stringByAppendingString:[NSString stringWithFormat:@"%d",[tag intValue]]];
-        _delimeter = @",";
-    }
+//    if([categoryList count]!=0){
+//    for (NSNumber *tag in categoryList) {
+//        _catList = [_catList stringByAppendingString:_delimeter];
+//        _catList = [_catList  stringByAppendingString:[NSString stringWithFormat:@"%d",[tag intValue]]];
+//        _delimeter = @",";
+//    }}
     NSString *userId = [plist getValueforKey:C_UserId];
     NSString *bodydata = [NSString stringWithFormat:@"UID=%@&title=%@&detail=%@&tagged_ppl=%@&categories=%@",
                                                     userId,

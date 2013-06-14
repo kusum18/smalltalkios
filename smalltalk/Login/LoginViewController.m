@@ -12,6 +12,11 @@
 #import "Constants.h"
 #import "plist.h"
 
+#define callLinkedWebView 1
+#define callFBUpdate 2
+#define callLinkedInUpdate 3
+#define callNone -1
+
 @interface LoginViewController ()
 {
     NSDictionary<FBGraphUser> *profile;
@@ -24,7 +29,11 @@
 
 @implementation LoginViewController
 
-@synthesize spinner;
+UIWebView *webview;
+
+@synthesize spinner,webview,close;
+
+int callStatus = callNone;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,22 +48,38 @@
     [self.spinner stopAnimating];
 }
 
+-(void) btnClick:(id)sender{
+    if(!webview){
+        
+    }else{
+        [webview removeFromSuperview];
+        [(UIButton *)sender removeFromSuperview];
+    }
+}
+
 - (IBAction)linkedInConnect:(id)sender {
-    
-    UIWebView *view = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 300, 400)];
+    [self.webview setHidden:NO];
+    [self.close setHidden:NO];
     NSString *fullURL = @"http://54.214.205.250/smalltalk/index.php/loginlinkedin";
     NSURL *url = [NSURL URLWithString:fullURL];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    [view loadRequest:requestObj];
-    [view sizeToFit];
-    [view setDelegate:self];
-//    [view su];
-    [self.view addSubview:view];
+    [webview loadRequest:requestObj];
+    [webview sizeToFit];
+    [webview setDelegate:self];
+    callStatus = callLinkedWebView;
+    
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView{
-//    NSString *html = [webView g];
     
+}
+
+-(NSString *)accessToken:(NSString *)html{
+    NSArray *components = [html componentsSeparatedByString:@"access_token\":\""];
+    NSString *temp = (NSString *)[components objectAtIndex:1];
+    components = [temp componentsSeparatedByString:@"\""];
+    temp = (NSString *)[components objectAtIndex:0];
+    return temp;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
@@ -63,6 +88,24 @@
     
     if ([html rangeOfString:@"\"access_token\""].location!=NSNotFound) {
         [webView setHidden:YES];
+        NSString *regUrl = newUserRegistration;
+        NSString *uid =[plist getValueforKey:C_UserId];
+        NSString *user_name = [[plist getValueforKey:C_Name] stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+        NSString *fbid = @"-1";
+        NSString *accessToken ;
+        NSString *deviceToken = [plist getValueforKey:C_Device_token];
+        
+        accessToken = [self accessToken:html];
+        
+        NSString *urlstring = [NSString stringWithFormat:@"%@/%@/%@/ln/%@/%@/%@",
+                               regUrl,
+                               uid,
+                               user_name,
+                               fbid,
+                               accessToken,
+                               deviceToken];
+        [[HttpManager alloc] initWithURL:[NSURL URLWithString:urlstring] delegate:self];
+        callStatus = callLinkedInUpdate;
     }
 }
 - (void)viewDidLoad
@@ -113,6 +156,11 @@
     }
 }
 
+- (IBAction)closeWebview:(id)sender {
+    [self.webview setHidden:YES];
+    [self.close setHidden:YES];
+}
+
 - (void)openSession
 {
 [FBSession openActiveSessionWithPublishPermissions: [NSArray arrayWithObjects: @"publish_stream", nil]
@@ -142,25 +190,31 @@
     NSString *uid =[plist getValueforKey:C_UserId];
     NSString *user_name = [user.name stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
     NSString *fbid = user.id;
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@/%@/fb/%@/%@/%@",
-                  regUrl,
-                   uid,
-                  user_name,
-                  fbid,
-                  _fbAccessToken,
-                  _deviceToken]];
+    NSString *urlstring = [NSString stringWithFormat:@"%@/%@/%@/fb/%@/%@/%@",
+                           regUrl,
+                           uid,
+                           user_name,
+                           fbid,
+                           _fbAccessToken,
+                           _deviceToken];
+    NSURL *url = [NSURL URLWithString:urlstring];
+    NSLog(@"%@",urlstring);
     [plist writeToPlistsetValue:user.name forKey:C_Name];
     [plist writeToPlistsetValue:user.birthday forKey:C_Email];
     [[HttpManager alloc] initWithURL:url delegate:self];
 }
 
 - (void) connectionDidFinish:(HttpManager *)theConnection{
-    NSError *error;
-//    NSString *uid=[[NSString alloc] initWithData:theConnection.receivedData encoding:NSUTF8StringEncoding];
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:theConnection.receivedData options:kNilOptions error:&error];
-    NSString  *uid = [dict objectForKey:@"user_id"];
-    [plist writeToPlistsetValue:uid forKey:C_UserId];
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    if(callStatus == callLinkedInUpdate){
+                [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        NSError *error;
+        NSString *uid=[[NSString alloc] initWithData:theConnection.receivedData encoding:NSUTF8StringEncoding];
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:theConnection.receivedData options:kNilOptions error:&error];
+        uid = [dict objectForKey:@"user_id"];
+        [plist writeToPlistsetValue:uid forKey:C_UserId];
+    }
 }
 -(void) connectionDidFail:(HttpManager *)theConnection{
     

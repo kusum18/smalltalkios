@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 - (IBAction)performLogin:(id)sender;
+@property (strong, nonatomic) IBOutlet UIWebView *webview;
+@property (strong, nonatomic) IBOutlet UIButton *close;
+- (IBAction)closeWebview:(id)sender;
 
 - (void)openSession;
 

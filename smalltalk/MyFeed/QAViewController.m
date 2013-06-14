@@ -146,7 +146,6 @@
 -(void) answersList:(NSArray *)answers{
     _posts = [NSMutableArray arrayWithArray:answers];
     [self.postTable reloadData];
-    
 }
 
 -(void)loadIntoPosts:(NSArray *)objs forType:(NSInteger)type{
@@ -228,16 +227,15 @@
 - (IBAction)tagFriends:(id)sender {
     MentionViewController *viewvc = [[MentionViewController alloc] init];
     viewvc.qid = _question_id.postid;
-    [self.navigationController pushViewController:viewvc animated:YES];
+    [self presentViewController:viewvc animated:YES completion:nil];
 }
 
 -(void) addFriend:(FriendTag *)tag{
-    NSString *urlstring = [NSString stringWithFormat:@"%@/%@/%@/%@",
-                                                    peerForwardingURL,
+    NSString *data = [NSString stringWithFormat:@"post_id=%@/user_id=%@/tagged_ppl=%@",
                                                     _question_id.postid,
                                                     [plist getValueforKey:C_UserId],
                                                     tag.userid];
-    [[HttpManager alloc] initWithURL:[NSURL URLWithString:urlstring] delegate:self];
+    [[HttpManager alloc] initWithPOSTURL:[NSURL URLWithString:peerForwardingURL] delegate:self forPostData:data];
     forwardFriendRequest = YES;
 }
 

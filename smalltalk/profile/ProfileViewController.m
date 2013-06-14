@@ -44,6 +44,7 @@
 
 - (IBAction)unlinkFacebook:(id)sender {
     [FBSession.activeSession closeAndClearTokenInformation];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 #pragma mark table data delegate
@@ -71,12 +72,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 2;
 }
-
-
-//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView{
-//    
-//}
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(section==0){

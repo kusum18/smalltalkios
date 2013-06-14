@@ -73,25 +73,40 @@
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
 // Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
+
+-(void) setFrame:(UILabel *)_label{
+    CGRect frame = _label.frame;
+    frame.size.width = 276;
+    _label.frame = frame;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *simpleTableIdentifier = @"QuestionCell";
     
     QuestionCell *cell = (QuestionCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
+    QA *feed = [_feeds objectAtIndex:indexPath.row];
     if (!cell) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"QuestionCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
+        [cell.postme setNumberOfLines:0];
+        [cell.postme setText:[feed postText]];
+        [self setFrame:cell.postme];
+        [cell.postme sizeToFit];
     }
-    QA *feed = [_feeds objectAtIndex:indexPath.row];
     [cell.postme setText:[feed postText]];
-    [cell.postme setNumberOfLines:0];
-//    [cell.postme sizeToFit];
+    [self setFrame:cell.postme];
+    [cell.postme sizeToFit];
     [cell.titleLabel setText:[feed postTitle]];
     return cell;
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 78;
+    NSString *str = [[_feeds objectAtIndex:indexPath.row] postText];
+    CGSize textSize = [str sizeWithFont:[UIFont boldSystemFontOfSize:15]
+                      constrainedToSize:CGSizeMake(249, 2000)
+                          lineBreakMode:NSLineBreakByWordWrapping];
+    return MAX(textSize.height+10,78);
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section

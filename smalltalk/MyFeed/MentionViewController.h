@@ -13,6 +13,7 @@
 @interface MentionViewController : ViewController<UITableViewDataSource,UITableViewDelegate,HttpManagerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *userlistTable;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *animator;
 
 @property (nonatomic,retain) id delegate;
 

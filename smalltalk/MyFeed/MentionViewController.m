@@ -22,7 +22,7 @@
 
 @implementation MentionViewController
 
-@synthesize delegate,qid;
+@synthesize delegate,qid,animator;
 
 @synthesize  tagged=_tagged,friendsList=_friendsList;
 NSMutableArray *friendsList;
@@ -105,7 +105,6 @@ NSString *_url;
     }else{
         url = [NSString stringWithFormat:@"%@/%@",friendsListURL,uid];
     }
-    
     [[HttpManager alloc] initWithURL:[NSURL URLWithString:url] delegate:self];
 }
 
@@ -137,6 +136,7 @@ NSString *_url;
         tag.lstatus = [friends objectForKey:@"lstatus"];
         [_friendsList addObject:tag];
     }
+    [self.animator setHidden:YES];
     [self.userlistTable reloadData];
 }
 

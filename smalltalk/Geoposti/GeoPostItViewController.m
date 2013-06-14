@@ -103,7 +103,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *str = [[_geoposts objectAtIndex:indexPath.row] postText];
-    CGSize textSize = [str                       sizeWithFont:[UIFont boldSystemFontOfSize:18]
+    CGSize textSize = [str sizeWithFont:[UIFont boldSystemFontOfSize:18]
                        constrainedToSize:CGSizeMake(300, 2000)
                        lineBreakMode:UILineBreakModeWordWrap];
     return textSize.height;
